@@ -13,7 +13,6 @@ dist
 /.project
 /RUNNING_PID
 /.settings
-conf
 project
 test
 activator-launch-1.2.10.jar
