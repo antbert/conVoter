@@ -1,0 +1,115 @@
+.page-guest {
+	background: #20201f url("@{img}/guest-bg.jpg") no-repeat;
+	background-size: cover;
+
+	.logo {
+		position: relative;
+		top: 65px;
+		left: 0;
+		width: 100%;
+		padding-top: 50px;
+		margin: 0;
+		text-align: center;
+		background: url("@{img}/logo-convoter.png") no-repeat center top;
+		.font-light(16px);
+	}
+
+	.jury {
+		position: fixed;
+		bottom: 0;
+		left: 50%;
+		margin-left: -150px;
+		width: 301px;
+		height: 243px;
+		background: url("@{img}/guest-jury.png") no-repeat;
+		display: none;
+	}
+
+	.start-box {
+		position: relative;
+		top: 140px;
+		text-align: center;
+
+		.inp {
+			width: 240px;
+			padding: 0 10px;
+			height: 33px;
+			background: rgba(255, 255, 255, 0.25);
+			border-radius: 5px;
+			border: none;
+			text-align: center;
+			margin: 5px auto 20px;
+			display: block;
+		}
+
+		.start-first {
+			transition: all .5s ease-in-out;
+
+			label {
+				display: block;
+			}
+
+			.or {
+				width: 256px;
+				background: url("@{img}/guest-or-line.png") no-repeat center center;
+				.font-italic();
+				text-align: center;
+				margin: 0 auto 20px;
+			}
+
+			.login-as-jury {
+				text-decoration: none;
+				border-bottom: 1px dotted;
+
+				&:hover {
+					border-bottom: none;
+				}
+			}
+		}
+
+		.start-second {
+			text-align: left;
+			width: 256px;
+			margin: 0 auto;
+			position: relative;
+			visibility: hidden;
+			opacity: 0;
+			transition: all .5s ease-in-out;
+
+			.close {
+				position: absolute;
+				top: -30px;
+				right: -30px;
+				opacity: .6;
+				cursor: pointer;
+				.font-light(30px);
+
+				&:hover {
+					opacity: 1;
+				}
+			}
+
+			.inp {
+				margin-bottom: 5px;
+			}
+
+			.btn {
+				margin-top: 5px;
+			}
+		}
+
+		&.login {
+			.start-first {
+				opacity: 0;
+				transform: translateY(-132px);
+			}
+
+			.start-second {
+				visibility: visible;
+				transform: translateY(-132px);
+				opacity: 1;
+			}
+		}
+
+	}
+}

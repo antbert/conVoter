@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>conVoter</title>
+        <meta name="description" content="">
+        <link rel="stylesheet" href="../public/stylesheets/all.css">
+    </head>
+    <body class="page-guest">
+
+        <h1 class="logo">Contest voting in realtime</h1>
+        
+        <div class="start-box">
+
+            <div class="start-first">
+                <form id="find-contest-form">
+                    <label for="contest-id">Enter your contest ID</label>
+                    <input type="text" name="id" id="contest-id" class="inp" autofocus>
+                </form>
+                
+                <div class="or">or</div>
+
+                <a href="#" class="login-as-jury">Login as Jury</a>
+            </div>
+
+            <form class="start-second" id="jury-login-form">
+                <div class="close">&times;</div>
+                <input type="text" name="username" id="jury-username" class="inp" placeholder="Username">
+                <input type="password" name="password" id="jury-password" class="inp" placeholder="Password">
+                <input type="submit" class="btn" value="Login">
+            </form>
+
+        </div>
+
+        <div class="jury"></div>
+
+    </body>
+</html>
