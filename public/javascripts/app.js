@@ -21,6 +21,7 @@
 			colors: []
 		})
 		.constant('I18N.MESSAGES', {
+			'logo'
 			'action.vote': 'vote'
 		});
 
