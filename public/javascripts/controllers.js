@@ -16,11 +16,13 @@ convoter.controller('GuestController', ['$scope',
 ]);
 
 convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS', function (scope, Competition, baseUrl) {
-	var body = $('body');
+	var body = $('body'),
+		locationParts = location.pathname.split(''),
+		currentCompetitionId = locationParts[locationParts.length - 1];
 
 	body.attr('class', 'page-inner');
 
-	Competition.get({id: 1}, function(data) {
+	Competition.get({id: currentCompetitionId}, function(data) {
 		console.log(data);
 		scope.competition = data;
 		scope.baseUrl = baseUrl;
