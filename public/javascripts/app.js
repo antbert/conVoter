@@ -5,7 +5,8 @@
 
 	convoter
 		.constant('BASE_URLS', {
-			api: '/'
+			api: '/assets',
+			templates: ''
 		})
 		.constant('I18N.MESSAGES', {
 			'logo': 'Contest voting in realtime',
@@ -15,8 +16,8 @@
 			'action.vote': 'vote'
 		});
 
-	convoter.config(['$routeProvider', '$locationProvider',
-		function (routeProvider, locationProvider) {
+	convoter.config(['$routeProvider', '$locationProvider', 'BASE_URLS',
+		function (routeProvider, locationProvider, baseUrls) {
 			/*
 			 * turn on html5 history api
 			 * for avoiding hashs in URLs
@@ -25,15 +26,19 @@
 
 			routeProvider
 				.when('/login', {
-					templateUrl: 'assets/partials/guest.html',
+					templateUrl: baseUrls.templates + 'partials/guest.html',
 					controller: 'GuestController'
 				})
 				.when('/voting', {
-					templateUrl: 'assets/partials/inner.html',
+					templateUrl: baseUrls.templates + 'partials/inner.html',
+					controller: 'VotingMainController'
+				})
+				.when('/voting/:eventId', {
+					templateUrl: baseUrls.templates + 'partials/inner.html',
 					controller: 'VotingMainController'
 				})
 				.otherwise({
-					templateUrl: 'assets/partials/main.html'
+					templateUrl: 'partials/main.html'
 				});
 		}
 	]);
