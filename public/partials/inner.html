@@ -7,7 +7,7 @@
 	
 	<h1 class="contest-title">{{competition.currentCompetition.name}}</h1>
 
-	<a href="#" class="logout" id="logout" title="Logout"></a>
+	<!-- <a href="#" class="logout" id="logout" title="Logout"></a> -->
 
 	<div class="screen-switcher" ng-controller="SwitchTabController">
 		<a href="#" class="item active el-tab-jury" ng-click="switchToJuryVote()">Jury vote</a>
@@ -29,14 +29,14 @@
 
 <div class="content active el-tab-jury">	
 	<div class="projects" ng-controller="ProjectController">
-		<div class="project" ng-repeat="project in competition.projects">
+		<div class="project" ng-repeat="project in competition.currentCompetition.projects">
 			<div class="battery-box">
 				<div class="battery">
 					<!-- <div class="project-points">42</div> -->
 				</div>
 
 				<div class="battery-progress">
-					<div ng-repeat="member in competition.vouters">
+					<div ng-repeat="member in competition.currentCompetition.vouters">
 						<div class="progress bg-{{$index + 1}}"></div>						
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 
 	<div ng-controller="JuryController" class="jury-list">
 		<h3 class="jury-list-title">Jury</h3>
-		<div class="jury-member" ng-repeat="member in competition.vouters">
+		<div class="jury-member" ng-repeat="member in competition.currentCompetition.vouters">
 			<div class="photo-wrap bg-{{$index + 1}}">
 				<img ng-src="{{member.imageLink}}" class="photo" alt="">
 			</div>
@@ -72,7 +72,7 @@
 <div class="content content-anonymous el-tab-viewers">
 			
 	<div class="projects" ng-controller="ProjectController">
-		<div class="project" ng-repeat="project in competition.projects">
+		<div class="project" ng-repeat="project in competition.currentCompetition.projects">
 			<div class="battery-box">
 				<div class="battery">
 					<!-- <div class="project-points">42</div> -->

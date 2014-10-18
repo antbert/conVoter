@@ -867,6 +867,8 @@ input {
   opacity: 1;
 }
 .page-inner .content .jury-list .jury-member .photo {
+  width: 60px;
+  height: 60px;
   border-radius: 100px;
 }
 .page-inner .content.content-anonymous .projects {
