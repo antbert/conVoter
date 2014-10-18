@@ -15,7 +15,8 @@ import java.util.List;
 
 @Entity
 public class Jury extends Model {
-public static final String LOGIN="login";
+    public static final String LOGIN = "login";
+
     public Jury(String login, String password) {
         this.login = login;
         this.password = password;
@@ -43,11 +44,11 @@ public static final String LOGIN="login";
     @Formats.DateTime(pattern = "dd/MM/yyyy")
     public Date endDate = new Date();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonBackReference
     public List<Competition> competitions;
 
-    @OneToMany(mappedBy = "jury", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "jury", cascade = CascadeType.ALL)
     @JsonBackReference
     public List<Rating> ratings;
 

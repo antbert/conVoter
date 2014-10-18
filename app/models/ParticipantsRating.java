@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 public class ParticipantsRating extends Model {
     @Id
     @GeneratedValue
-    @Constraints.Min(1)
     public Long id;
 
     @ManyToOne
