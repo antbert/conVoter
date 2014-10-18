@@ -11,6 +11,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.With;
+import secure.Secured;
 
 public class Authorisation extends Controller {
     private final Form<Jury> juryForm = Form.form(Jury.class);
@@ -32,6 +33,13 @@ public class Authorisation extends Controller {
         }
         Logger.info("Yuri not validated");
         return badRequest(Json.toJson(new AngularError("Can't find user")));
+    }
+
+    ///////
+    @Secured
+    @With(CorsAction.class)
+    public Result login2() {
+        return ok();
     }
 
     private boolean validateJury(Jury actual) {
