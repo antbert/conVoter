@@ -25,11 +25,11 @@
 
 			routeProvider
 				.when('/login', {
-					templateUrl: 'partials/guest.html',
+					templateUrl: 'assets/partials/guest.html',
 					controller: 'GuestController'
 				})
 				.when('/voting', {
-					templateUrl: 'partials/inner.html',
+					templateUrl: 'assets/partials/inner.html',
 					controller: 'VotingMainController'
 				})
 				.otherwise({
