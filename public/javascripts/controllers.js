@@ -15,13 +15,15 @@ convoter.controller('GuestController', ['$scope',
 	}
 ]);
 
-convoter.controller('VotingMainController', ['$scope', 'Competition', function (scope, Competition) {
+convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS', function (scope, Competition, baseUrl) {
 	var body = $('body');
 
 	body.attr('class', 'page-inner');
 
 	Competition.get({id: 1}, function(data) {
+		console.log(data);
 		scope.competition = data;
+		scope.baseUrl = baseUrl;
 	});
 
 }]);
@@ -32,8 +34,8 @@ convoter.controller('VoteController', ['$scope', 'Vote', function (scope) {
 	}
 }]);
 
-convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location', 
-	function (scope, http, location) {
+convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location', 'BASE_URLS',
+	function (scope, http, location, baseUrl) {
 		var form = $('#jury-login-form');
 
 		scope.juryFormData = {};
@@ -41,12 +43,12 @@ convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location'
 		scope.submit = function () {
 			http({
 				method: 'POST',
-				url: '/login',
+				url: baseUrl.api + '/login',
 				data: $.param(scope.juryFormData),
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				}
-			}).success(function (data) {
+			}).success(function (data, asdgf, header) {
 				if (!('error' in data)) {
 					location.path('/voting');
 				}
@@ -101,13 +103,11 @@ convoter.controller('SwitchTabController', ['$scope', function (scope) {
 	scope.switchToJuryVote = function() {
 		$elTabJury.addClass(activeClass);
 		$elTabViewers.removeClass(activeClass);
-		console.log('1');
 	};
 
 	scope.switchToViewersVote = function() {
 		$elTabViewers.addClass(activeClass);
 		$elTabJury.removeClass(activeClass);
-		console.log('2');
 	};
 
 }]);

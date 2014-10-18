@@ -1,11 +1,11 @@
 <header class="header">
 
 	<div class="my-profile">
-		<img src="http://placehold.it/45x45" class="photo" alt="">
-		Fistname Lastname
+		<img src="{{competition.userInfo.imageLink}}" class="photo" alt="">
+		{{competition.userInfo.name}}
 	</div>
 	
-	<h1 class="contest-title">{{competition.name}}</h1>
+	<h1 class="contest-title">{{competition.currentCompetition.name}}</h1>
 
 	<a href="#" class="logout" id="logout" title="Logout"></a>
 
@@ -22,28 +22,23 @@
 		<h2 class="side-title">My Events</h2>
 
 		<ul class="contests-list">
-			<li><a href="#">What The Hack 2014</a></li>
-			<li class="active"><a href="#">What The Hack 2014</a></li>
-			<li><a href="#">What The Hack 2014</a></li>
-			<li><a href="#">What The Hack 2014</a></li>
-			<li class="disabled"><a href="#">What The Hack 2014</a></li>
-			<li class="disabled"><a href="#">What The Hack 2014</a></li>
+			<li ng-repeat="comp in competition.competitionsOfCurrentUser"><a ng-href="{{baseUrl.siteUrl}}/voting/{{comp.id}}">{{comp.name}}</a></li>
 		</ul>
 	</div>
 </div>
 
 <div class="content active el-tab-jury">	
 	<div class="projects" ng-controller="ProjectController">
-		<div class="project" ng-repeat="project in projects">
+		<div class="project" ng-repeat="project in competition.projects">
 			<div class="battery-box">
 				<div class="battery">
-					<div class="project-points">42</div>
+					<!-- <div class="project-points">42</div> -->
 				</div>
 
 				<div class="battery-progress">
-					<div class="progress bg-1" style="height: 50px"></div>
-					<div class="progress bg-2" style="height: 25px"></div>
-					<div class="progress bg-3" style="height: 25px"></div>
+					<div ng-repeat="member in competition.vouters">
+						<div class="progress bg-{{$index + 1}}"></div>						
+					</div>
 				</div>
 
 				<!-- <div class="variant bg-2 variant-choosed">+2</div>  --><!-- add .variant-voted to animate voted points -->
@@ -56,7 +51,7 @@
 
 			</div>
 			<div class="project-info">
-				<a href="#" class="project-name">{{project.name}}</a>
+				<a href="{{project.url}}" class="project-name">{{project.name}}</a>
 				<div class="team-name">{{project.teamName}}</div>
 			</div>
 		</div>
@@ -64,9 +59,9 @@
 
 	<div ng-controller="JuryController" class="jury-list">
 		<h3 class="jury-list-title">Jury</h3>
-		<div class="jury-member" ng-repeat="member in jury">
+		<div class="jury-member" ng-repeat="member in competition.vouters">
 			<div class="photo-wrap bg-{{$index + 1}}">
-				<img ng-src="{{member.imageSrc}}" class="photo" alt="">
+				<img ng-src="{{member.imageLink}}" class="photo" alt="">
 			</div>
 			<div class="name">{{member.name}}</div>
 		</div>
@@ -77,10 +72,10 @@
 <div class="content content-anonymous el-tab-viewers">
 			
 	<div class="projects" ng-controller="ProjectController">
-		<div class="project" ng-repeat="project in projects">
+		<div class="project" ng-repeat="project in competition.projects">
 			<div class="battery-box">
 				<div class="battery">
-					<div class="project-points">42</div>
+					<!-- <div class="project-points">42</div> -->
 				</div>
 
 				<div class="battery-progress">
@@ -88,7 +83,7 @@
 				</div>
 				
 				<div class="vote-variants">
-					<div class="variant variant-choosed">+1</div> <!-- add class .hide to animate voted points -->
+					<!-- <div class="variant variant-choosed">+1</div> --> <!-- add class .hide to animate voted points -->
 				</div>
 				<!-- <div class="variant bg-2 variant-choosed">+2</div>  --><!-- add .variant-voted to animate voted points -->
 		

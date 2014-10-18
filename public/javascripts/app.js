@@ -5,8 +5,9 @@ var convoter = angular.module('convoter', [
 
 convoter
 	.constant('BASE_URLS', {
-		api: 'assets/',
-		templates: ''
+		api: 'http://10.168.0.50:9000',
+		templates: '/public/',
+		siteUrl: 'http://wth.loc/public'
 	})
 	.constant('I18N.MESSAGES', {
 		'logo': 'Contest voting in realtime',
@@ -35,7 +36,7 @@ convoter.config(['$routeProvider', '$locationProvider', 'BASE_URLS',
 			})
 			.when('/voting/:eventId', {
 				templateUrl: baseUrls.templates + 'partials/inner.html',
-				controller: 'GuestController'
+				controller: 'VotingMainController'
 			})
 			.otherwise({
 				templateUrl: baseUrls.templates + 'partials/main.html'

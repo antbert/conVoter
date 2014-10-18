@@ -484,6 +484,7 @@ a:hover {
 input {
   font: 16px 'UbuntuRegular', sans-serif;
   color: #fff;
+  border-radius: 100px;
 }
 .btn {
   background: #e16c0d;
@@ -558,7 +559,6 @@ input {
   padding: 0 10px;
   height: 33px;
   background: rgba(255, 255, 255, 0.25);
-  border-radius: 5px;
   border: none;
   text-align: center;
   margin: 5px auto 20px;
