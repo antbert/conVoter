@@ -8,3 +8,7 @@ convoter
 	.factory('Project', ['$resources', 'BASE_URLS', function (resources) {
 		return resources(baseUrls.api + '/project');
 	}])
+
+	.factory('Vote', ['$resources', 'BASE_URLS', function (resources) {
+
+	}]);

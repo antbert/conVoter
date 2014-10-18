@@ -6,9 +6,7 @@
 			var startBox = $('.start-box'),
 				body = $('body');
 
-			body
-				.attr('class', '')
-				.addClass('page-guest');
+			body.attr('class', 'page-guest');
 
 			scope.close = function () {
 				startBox.removeClass('login');
@@ -23,9 +21,13 @@
 	convoter.controller('VotingMainController', ['$scope', function (scope) {
 		var body = $('body');
 
-		body
-			.attr('class', '')
-			.addClass('page-inner')
+		body.attr('class', 'page-inner');
+	}]);
+
+	convoter.controller('VoteController', ['$scope', 'Vote', function (scope) {
+		sope.vote = function () {
+			
+		}
 	}]);
 
 	convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location', 
@@ -37,16 +39,14 @@
 			scope.submit = function () {
 				http({
 					method: 'POST',
-					url: form.attr('action'),
+					url: '/login',
 					data: $.param(scope.formData),
 					headers: {
 						'Content-Type': 'application/x-www-form-urlencoded'
 					}
 				}).success(function () {
-					
+					// location.path('/');
 				});
-
-				location.path('/');
 			};
 		}
 	]);

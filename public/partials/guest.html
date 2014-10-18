@@ -13,7 +13,7 @@
         <a href="#" class="login-as-jury" ng-click="loginAsJury()">Login as Jury</a>
     </div>
 
-    <form action="/login" ng-controller="LoginAsJuryFormController" 
+    <form name="loginForm" ng-controller="LoginAsJuryFormController" 
         class="start-second" id="jury-login-form" ng-submit="submit()">
         <div class="close" ng-click="close()">&times;</div>
         <input type="text" name="login" id="jury-username" 
