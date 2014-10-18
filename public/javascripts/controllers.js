@@ -28,6 +28,11 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 
 }]);
 
+convoter.controller('ChooseCompetitionController', ['$scope', function (scope) {
+	var body = $('body');
+	body.attr('class', 'page-inner page-empty');
+}]);	
+
 convoter.controller('VoteController', ['$scope', 'Vote', function (scope) {
 	scope.vote = function () {
 
@@ -50,14 +55,23 @@ convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location'
 				}
 			}).success(function (data, asdgf, header) {
 				if (!('error' in data)) {
-					location.path('/voting');
+					location.path('start');
 				}
 			});
 		};
 	}
 ]);
 
-convoter.controller('FindContestFormController', ['$scope', function (scope) {
+convoter.controller('FindContestFormController', ['$scope','$location', 'BASE_URLS', function (scope, location, baseUrl) {
+
+	scope.formData = {};
+
+	scope.find = function() {
+		if (scope.formData.hasOwnProperty('id')) {
+			location.path('voting/' + scope.formData.id);
+		}
+		return;
+	}
 
 }]);
 

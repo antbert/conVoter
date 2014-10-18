@@ -10,9 +10,14 @@
         width: 100%;
         text-align: center;
         background: url("@{img}/gradient-white-top.png") no-repeat center bottom;
+        
+        .logo {
+            display: none;
+        }
 
         .contest-title {
             margin: 13px 0 0;
+            height: 46px;
             .font-bold(38px);
         }
 
@@ -28,6 +33,7 @@
                 border-radius: 100px;
                 width: 45px;
                 height: 45px;
+                background: rgba(255, 255, 255, 0.2);
             }
         }
 
@@ -90,6 +96,7 @@
         }
 
         .projects {
+            height: 287px;
             text-align: center;
             padding: 80px 0 0;
             background: url("@{img}/gradient-black-top.png") no-repeat center bottom;
@@ -400,6 +407,50 @@
         }
 
         &:hover {
+            background: @color-darkgrey url("@{img}/inner-bg.png");
+            z-index: 100;
+            left: 0;
+            box-shadow: 14px 0 80px #000;
+            
+            .side-content {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .icon-menu {
+                left: 223px;
+                opacity: 0;
+            }
+        }
+    }
+
+    .empty-state {
+        display: none;
+    }
+
+    &.page-empty {
+        .header {
+            .logo {
+                width: 166px;
+                height: 41px;
+                margin: 20px auto 0;
+                background: url("@{img}/logo-convoter.png") no-repeat center top;
+                display: block;
+            }
+        }
+    
+        .content,
+        .screen-switcher {
+            display: none;
+        }
+
+        .empty-state {
+            display: block;
+            margin: 120px 0 0 310px;
+            opacity: .6;
+        }
+
+        .side {
             background: @color-darkgrey url("@{img}/inner-bg.png");
             z-index: 100;
             left: 0;

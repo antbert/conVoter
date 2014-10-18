@@ -643,8 +643,12 @@ input {
   text-align: center;
   background: url("../images/gradient-white-top.png") no-repeat center bottom;
 }
+.page-inner .header .logo {
+  display: none;
+}
 .page-inner .header .contest-title {
   margin: 13px 0 0;
+  height: 46px;
   font: 38px 'UbuntuBold', sans-serif;
 }
 .page-inner .header .my-profile {
@@ -659,6 +663,7 @@ input {
   border-radius: 100px;
   width: 45px;
   height: 45px;
+  background: rgba(255, 255, 255, 0.2);
 }
 .page-inner .header .logout {
   width: 30px;
@@ -709,6 +714,7 @@ input {
   display: block;
 }
 .page-inner .content .projects {
+  height: 287px;
   text-align: center;
   padding: 80px 0 0;
   background: url("../images/gradient-black-top.png") no-repeat center bottom;
@@ -966,6 +972,39 @@ input {
   opacity: 1;
 }
 .page-inner .side:hover .icon-menu {
+  left: 223px;
+  opacity: 0;
+}
+.page-inner .empty-state {
+  display: none;
+}
+.page-inner.page-empty .header .logo {
+  width: 166px;
+  height: 41px;
+  margin: 20px auto 0;
+  background: url("../images/logo-convoter.png") no-repeat center top;
+  display: block;
+}
+.page-inner.page-empty .content,
+.page-inner.page-empty .screen-switcher {
+  display: none;
+}
+.page-inner.page-empty .empty-state {
+  display: block;
+  margin: 120px 0 0 310px;
+  opacity: .6;
+}
+.page-inner.page-empty .side {
+  background: #202020 url("../images/inner-bg.png");
+  z-index: 100;
+  left: 0;
+  box-shadow: 14px 0 80px #000;
+}
+.page-inner.page-empty .side .side-content {
+  visibility: visible;
+  opacity: 1;
+}
+.page-inner.page-empty .side .icon-menu {
   left: 223px;
   opacity: 0;
 }
