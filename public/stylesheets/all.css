@@ -501,12 +501,15 @@ input {
 }
 .bg-1 {
   background-color: #1a9b1f;
+  box-shadow: 0 0 15px #1a9b1f;
 }
 .bg-2 {
   background-color: #e51919;
+  box-shadow: 0 0 15px #e51919;
 }
 .bg-3 {
   background-color: #0889a5;
+  box-shadow: 0 0 15px #0889a5;
 }
 .page-guest {
   background: #20201f url("../images/guest-bg.jpg") no-repeat;
@@ -804,7 +807,6 @@ input {
   text-align: center;
   border-radius: 100px;
   margin-bottom: 5px;
-  box-shadow: -3px 3px 0 rgba(0, 0, 0, 0.3);
 }
 .page-inner .content .project .vote-variants .variant.variant-zooming {
   -webkit-animation: zooming ease-in-out 1s;
@@ -974,12 +976,15 @@ input {
 }
 @-webkit-keyframes zooming {
   0% {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
     transform: scale(1);
   }
   50% {
+    box-shadow: -3px 3px 0 rgba(0, 0, 0, 0.3);
     transform: scale(1.1);
   }
   100% {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
     transform: scale(1);
   }
 }
