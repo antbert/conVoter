@@ -12,8 +12,9 @@
 	<!-- <a href="#" class="logout" id="logout" title="Logout"></a> -->
 
 	<div class="screen-switcher" ng-controller="SwitchTabController">
-		<a href="#" class="item active el-tab-jury" ng-click="switchToJuryVote()">Jury vote</a>
-		<a href="#" class="item el-tab-viewers" ng-click="switchToViewersVote()">Viewers vote</a>
+		<a href="#" class="item active el-tab el-tab-jury" ng-click="switchToJuryVote()">Jury vote</a>
+		<a href="#" class="item item-about el-tab el-tab-about" ng-click="switchToAbout()"></a>
+		<a href="#" class="item el-tab el-tab-viewers" ng-click="switchToViewersVote()">Viewers vote</a>
 	</div>
 </header>
 
@@ -29,7 +30,7 @@
 	</div>
 </div>
 
-<div class="content active el-tab-jury">	
+<div class="content active el-tab el-tab-jury">	
 	<div class="projects" ng-controller="ProjectController">
 		<div class="project" ng-repeat="project in competition.currentCompetition.projects">
 			<div class="battery-box">
@@ -71,7 +72,7 @@
 
 </div>
 
-<div class="content content-anonymous el-tab-viewers">
+<div class="content content-anonymous el-tab el-tab-viewers">
 			
 	<div class="projects" ng-controller="ProjectController">
 		<div class="project" ng-repeat="project in competition.currentCompetition.projects">
@@ -104,3 +105,8 @@
 
 
 <div class="empty-state">Choose event <br>from your events list.</div>
+
+
+<div class="content content-about el-tab el-tab-about">
+	{{competition.currentCompetition.description}}
+</div>

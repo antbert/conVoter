@@ -112,18 +112,25 @@ convoter.controller('ProjectController', ['$scope', function (scope) {
 }]);
 
 convoter.controller('SwitchTabController', ['$scope', function (scope) {
-	var $elTabJury = $('.el-tab-jury'),
+	var $elTab = $('.el-tab'),
+		$elTabJury = $('.el-tab-jury'),
+		$elTabAbout = $('.el-tab-about'),
 		$elTabViewers = $('.el-tab-viewers'),
 		activeClass = 'active';
 	
 	scope.switchToJuryVote = function() {
+		$elTab.removeClass(activeClass);
 		$elTabJury.addClass(activeClass);
-		$elTabViewers.removeClass(activeClass);
+	};	
+
+	scope.switchToAbout = function() {
+		$elTab.removeClass(activeClass);
+		$elTabAbout.addClass(activeClass);
 	};
 
 	scope.switchToViewersVote = function() {
+		$elTab.removeClass(activeClass);
 		$elTabViewers.addClass(activeClass);
-		$elTabJury.removeClass(activeClass);
 	};
 
 }]);

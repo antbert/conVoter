@@ -683,7 +683,8 @@ input {
   font: 16px 'UbuntuRegular', sans-serif;
   margin-bottom: -37px;
   display: inline-block;
-  left: 50%;
+  position: relative;
+  z-index: 2;
 }
 .page-inner .header .screen-switcher .item {
   width: 140px;
@@ -691,19 +692,28 @@ input {
   height: 40px;
   line-height: 40px;
   text-align: center;
-  background: #121212;
+  background-color: #121212;
   color: #fff;
   text-decoration: none;
+  border-right: 1px solid #373737;
 }
 .page-inner .header .screen-switcher .item:first-child {
   border-radius: 100px 0 0 100px;
 }
-.page-inner .header .screen-switcher .item:last-child {
-  border-radius: 0 100px 100px 0;
-}
 .page-inner .header .screen-switcher .item.active {
   cursor: default;
-  background: #e16c0d;
+  border-right: 1px solid #e16c0d;
+  background-color: #e16c0d;
+}
+.page-inner .header .screen-switcher .item:last-child {
+  border-radius: 0 100px 100px 0;
+  border: none;
+}
+.page-inner .header .screen-switcher .item-about {
+  width: 40px;
+  background-image: url("../images/icon-info.png");
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .page-inner .content {
   display: none;
@@ -897,6 +907,15 @@ input {
   text-decoration: none;
   box-shadow: -3px 3px 0 rgba(0, 0, 0, 0.3);
   padding: 10px 30px;
+}
+.page-inner .content.content-about {
+  position: absolute;
+  top: 90px;
+  padding: 40px 20px 20px 120px;
+  margin: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 .page-inner .side {
   position: fixed;
