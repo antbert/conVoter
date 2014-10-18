@@ -1,7 +1,10 @@
 package secure;
 
+import models.pojo.AngularError;
 import org.apache.commons.lang3.StringUtils;
+import play.Logger;
 import play.libs.F;
+import play.libs.Json;
 import play.mvc.Action;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -11,7 +14,7 @@ import play.mvc.Results;
  * Created by Antoni Bertel on 17.10.2014.
  */
 public class SecuredAction extends Action<Secured> {
-    private static final String USERNAME = "username";
+    private static final String LOGIN = "login";
 
     @Override
     public F.Promise<Result> call(Http.Context ctx) throws Throwable {
@@ -25,8 +28,11 @@ public class SecuredAction extends Action<Secured> {
                     ctx.request().setUsername(null);
                 }
             } else {
+                Logger.error("Secured action not passed");
+
                 Result unauthorized = Authenticator.onUnauthorized(ctx);
                 return F.Promise.pure(unauthorized);
+//                return F.Promise.pure(Results.badRequest("123"));
             }
         } catch (RuntimeException e) {
             throw e;
@@ -38,11 +44,11 @@ public class SecuredAction extends Action<Secured> {
     public static class Authenticator extends Results {
 
         public static String getUsername(Http.Context ctx) {
-            return ctx.session().get(USERNAME);
+            return ctx.session().get(LOGIN);
         }
 
         public static Result onUnauthorized(Http.Context ctx) {
-            return unauthorized(views.html.defaultpages.unauthorized.render());
+            return unauthorized(Json.toJson(new AngularError("You are not logged in")));
         }
 
     }
