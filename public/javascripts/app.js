@@ -33,7 +33,7 @@
 					controller: 'VotingMainController'
 				})
 				.otherwise({
-					templateUrl: 'partials/main.html'
+					templateUrl: 'assets/partials/main.html'
 				});
 		}
 	]);
