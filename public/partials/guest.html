@@ -1,0 +1,28 @@
+<h1 class="logo">Contest voting in realtime</h1>
+
+<div class="start-box">
+
+    <div class="start-first">
+        <form id="find-contest-form" ng-controller="FindContestFormController" novalidate>
+            <label for="contest-id">Enter your contest ID</label>
+            <input type="text" name="id" id="contest-id" class="inp" autofocus ng-model="formData.id" required>
+        </form>
+
+        <div class="or">or</div>
+
+        <a href="#" class="login-as-jury" ng-click="loginAsJury()">Login as Jury</a>
+    </div>
+
+    <form action="/login" ng-controller="LoginAsJuryFormController" 
+        class="start-second" id="jury-login-form" ng-submit="submit()">
+        <div class="close" ng-click="close()">&times;</div>
+        <input type="text" name="login" id="jury-username" 
+            class="inp" placeholder="Username" ng-model="juryformData.login">
+        <input type="password" name="password" id="jury-password" 
+            class="inp" placeholder="Password" ng-model="juryFormData.password" required>
+        <input type="submit" class="btn" value="Login">
+    </form>
+
+</div>
+
+<div class="jury"></div>
