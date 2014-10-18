@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
@@ -11,7 +12,14 @@ import java.util.List;
  */
 @Entity
 public class Project extends Model {
+
+    public Project(String name, String url) {
+        this.name = name;
+        this.url = url;
+    }
+
     @Id
+    @GeneratedValue
     @Constraints.Min(1)
     public Long id;
 
@@ -21,9 +29,19 @@ public class Project extends Model {
     @Constraints.MaxLength(100)
     public String url;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JsonBackReference
     public Competition competition;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     public List<Rating> ratings;
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
+    public List<ParticipantsRating> participantRatings;
+
+    public static Finder<Long, Project> find = new Finder<Long, Project>(
+            Long.class, Project.class
+    );
 }

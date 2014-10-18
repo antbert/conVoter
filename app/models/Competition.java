@@ -3,10 +3,7 @@ package models;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -15,8 +12,13 @@ import java.util.List;
 @Entity
 public class Competition extends Model {
 
+    public Competition(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     @Id
-    @Constraints.Min(1)
+    @GeneratedValue
     public Long id;
 
     @Constraints.MaxLength(30)
@@ -25,10 +27,10 @@ public class Competition extends Model {
     @Constraints.MaxLength(300)
     public String description;
 
-    @ManyToMany(mappedBy = "competitions")
+    @ManyToMany(mappedBy = "competitions", fetch = FetchType.LAZY)
     public List<Jury> vouters;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(mappedBy = "competition", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Project> projects;
 
     public static Finder<Long, Competition> find = new Finder<Long, Competition>(

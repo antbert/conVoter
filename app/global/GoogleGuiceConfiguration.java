@@ -11,6 +11,7 @@ import play.Logger;
  * Created by Antoni_Bertel on 10/16/2014.
  */
 public class GoogleGuiceConfiguration extends GlobalSettings {
+    public static final String APPLICATION_CONFIGURING_GOOGLE_GUICE = "Configuring google guice";
     private Injector injector;
 
     @Override
@@ -19,7 +20,7 @@ public class GoogleGuiceConfiguration extends GlobalSettings {
     }
 
     private Injector configureInjector() {
-        Logger.info("Application - configuring google guice");
+        Logger.info(APPLICATION_CONFIGURING_GOOGLE_GUICE);
 
         return Guice.createInjector(new AbstractModule() {
             @Override

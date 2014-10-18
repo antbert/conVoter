@@ -1,5 +1,6 @@
 package controllers.core;
 
+import play.Logger;
 import play.libs.F;
 import play.mvc.Action;
 import play.mvc.Http.Context;
@@ -13,8 +14,11 @@ import play.mvc.Result;
 public class CorsAction extends Action.Simple {
 
 
+    public static final String TRYING_TO_SET_DEFAULT_HEADERS_TO_RESPONSE = "Trying to set default headers to response";
+
     @Override
     public F.Promise<Result> call(Context context) throws Throwable {
+        Logger.info(TRYING_TO_SET_DEFAULT_HEADERS_TO_RESPONSE);
         Response response = context.response();
         response.setHeader("Access-Control-Allow-Origin", "*");
 
@@ -30,6 +34,5 @@ public class CorsAction extends Action.Simple {
 
         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, X-Auth-Token");
         return delegate.call(context);
-//        return null;
     }
 }
