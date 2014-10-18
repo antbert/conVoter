@@ -26,7 +26,7 @@
 
 	convoter.controller('VoteController', ['$scope', 'Vote', function (scope) {
 		sope.vote = function () {
-			
+
 		}
 	}]);
 
@@ -34,18 +34,20 @@
 		function (scope, http, location) {
 			var form = $('#jury-login-form');
 
-			scope.formData = {};
+			scope.juryFormData = {};
 
 			scope.submit = function () {
 				http({
 					method: 'POST',
 					url: '/login',
-					data: $.param(scope.formData),
+					data: $.param(scope.juryFormData),
 					headers: {
 						'Content-Type': 'application/x-www-form-urlencoded'
 					}
-				}).success(function () {
-					// location.path('/');
+				}).success(function (data) {
+					if ((!'error' in data)) {
+						location.path('/voting');
+					}
 				});
 			};
 		}
