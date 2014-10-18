@@ -5,12 +5,11 @@ package models;
  */
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import play.data.format.Formats;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -31,18 +30,14 @@ public class Jury extends Model {
     public String name;
 
     @Constraints.MaxLength(30)
+    @JsonIgnore
     public String login;
 
     @Constraints.MaxLength(30)
+    @JsonIgnore
     public String password;
 
     public String imageLink;
-
-    @Formats.DateTime(pattern = "dd/MM/yyyy")
-    public Date startDate = new Date();
-
-    @Formats.DateTime(pattern = "dd/MM/yyyy")
-    public Date endDate = new Date();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonBackReference

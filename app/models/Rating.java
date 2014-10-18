@@ -23,7 +23,6 @@ public class Rating extends Model {
     public Project project;
 
     @ManyToOne
-    @JsonBackReference
     public Jury jury;
 
     @Constraints.Min(0)

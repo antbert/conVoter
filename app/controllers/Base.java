@@ -16,14 +16,32 @@ public class Base extends Controller {
     public Result fillDatabase() {
         Logger.info("Trying to fill database");
         Jury firstJury = new Jury("login", "password");
-        Competition firstCompetition = new Competition("name", "description");
-        Project firsProject = new Project("name", "sdfsdf/fssfd");
-        Project secondProject = new Project("name2", "fdsdsf/dsfsfdsf12323");
+        firstJury.name = "Дмитрий Дудин";
+        firstJury.imageLink = "http://wth.by/images/dudes/dudin.png";
+        Jury secondJury = new Jury("login2", "password2");
+        secondJury.name = "Анастасия Хоменкова";
+        secondJury.imageLink = "http://wth.by/images/dudes/nastia.png";
+
+        Competition firstCompetition = new Competition("What the hack", "Within 44 hours the participants will have to create a prototype\n" +
+                "and / or a demo that will impress the jury and the audience");
+        Competition secondCompetition = new Competition("bla-bla-bla", "bla-bla-bla-bla-bla");
+        Project firsProject = new Project("Convoter", "http://localhost:9000", "team name");
+        Project secondProject = new Project("Convoter2", "http://localhost:9000", "team name");
+
+        Project firsProject1 = new Project("bla-bla", "http://bla", "team name");
+        Project secondProject1 = new Project("bla-bla2", "http://bla", "team name");
 
         firstCompetition.projects.add(firsProject);
         firstCompetition.projects.add(secondProject);
+        secondCompetition.projects.add(firsProject1);
+        secondCompetition.projects.add(secondProject1);
+
         firstJury.competitions.add(firstCompetition);
+        secondJury.competitions.add(firstCompetition);
+        firstJury.competitions.add(secondCompetition);
+        secondJury.competitions.add(secondCompetition);
         Ebean.save(firstJury);
+        Ebean.save(secondJury);
         List<Jury> users =
                 Ebean.find(Competition.class).
                         where().eq("id", 1)

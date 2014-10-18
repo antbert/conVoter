@@ -13,9 +13,10 @@ import java.util.List;
 @Entity
 public class Project extends Model {
 
-    public Project(String name, String url) {
+    public Project(String name, String url, String teamName) {
         this.name = name;
         this.url = url;
+        this.teamName = teamName;
     }
 
     @Id
@@ -25,6 +26,9 @@ public class Project extends Model {
     @Constraints.MaxLength(30)
     public String name;
 
+    @Constraints.MaxLength(30)
+    public String teamName;
+
     @Constraints.MaxLength(100)
     public String url;
 
@@ -33,12 +37,10 @@ public class Project extends Model {
     public Competition competition;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-    @JsonBackReference
     public List<Rating> ratings;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-    @JsonBackReference
-    public List<ParticipantsRating> participantRatings;
+    @Constraints.Min(-1)
+    public int participantsCount;
 
     public static Finder<Long, Project> find = new Finder<Long, Project>(
             Long.class, Project.class
