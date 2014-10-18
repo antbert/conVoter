@@ -205,7 +205,7 @@
                     text-align: center;
                     border-radius: 100px;
                     margin-bottom: 5px;
-                    box-shadow: -3px 3px 0 rgba(0, 0, 0, 0.3);
+                    // box-shadow: -3px 3px 0 rgba(0, 0, 0, 0.3);
 
                     &.variant-zooming {
                         -webkit-animation: zooming ease-in-out 1s;
@@ -426,12 +426,15 @@
 
 @-webkit-keyframes zooming {
   0% {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
     transform: scale(1);
   }
   50% {
+    box-shadow: -3px 3px 0 rgba(0, 0, 0, 0.3);
     transform: scale(1.1);
   }
   100% {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
     transform: scale(1);
   }
 }
