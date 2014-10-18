@@ -25,15 +25,15 @@
 
 			routeProvider
 				.when('/login', {
-					templateUrl: 'assets/partials/guest.html',
+					templateUrl: 'partials/guest.html',
 					controller: 'GuestController'
 				})
 				.when('/voting', {
-					templateUrl: 'assets/partials/inner.html',
+					templateUrl: 'partials/inner.html',
 					controller: 'VotingMainController'
 				})
 				.otherwise({
-					templateUrl: 'assets/partials/main.html'
+					templateUrl: 'partials/main.html'
 				});
 		}
 	]);

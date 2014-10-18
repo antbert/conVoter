@@ -90,4 +90,23 @@
 			}
 		]
 	}]);
+
+	convoter.controller('SwitchTabController', ['$scope', function (scope) {
+		var $elTabJury = $('.el-tab-jury'),
+			$elTabViewers = $('.el-tab-viewers'),
+			activeClass = 'active';
+		
+		scope.switchToJuryVote = function() {
+			$elTabJury.addClass(activeClass);
+			$elTabViewers.removeClass(activeClass);
+			console.log('1');
+		};
+
+		scope.switchToViewersVote = function() {
+			$elTabViewers.addClass(activeClass);
+			$elTabJury.removeClass(activeClass);
+			console.log('2');
+		};
+
+	}]);
 })();
