@@ -30,9 +30,9 @@ convoter.config(['$routeProvider', '$locationProvider', 'BASE_URLS',
 				templateUrl: baseUrls.templates + 'partials/guest.html',
 				controller: 'GuestController'
 			})
-			.when('/voting', {
+			.when('/start', {
 				templateUrl: baseUrls.templates + 'partials/inner.html',
-				controller: 'VotingMainController'
+				controller: 'ChooseCompetitionController'
 			})
 			.when('/voting/:eventId', {
 				templateUrl: baseUrls.templates + 'partials/inner.html',

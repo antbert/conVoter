@@ -3,7 +3,7 @@
 <div class="start-box">
 
     <div class="start-first">
-        <form id="find-contest-form" ng-controller="FindContestFormController" novalidate>
+        <form id="find-contest-form" ng-controller="FindContestFormController" ng-submit="find()" novalidate>
             <label for="contest-id">Enter your contest ID</label>
             <input type="text" name="id" id="contest-id" class="inp" autofocus ng-model="formData.id" required>
         </form>
@@ -26,3 +26,4 @@
 </div>
 
 <div class="jury"></div>
+<div class="jury-hand-bad"></div>
