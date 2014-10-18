@@ -3,10 +3,13 @@
 # ~~~~
 
 # Home page
-GET        /                    controllers.Application.index()
-GET        /greeter             controllers.Application.sockHandler()
-GET        /goozJson            controllers.Application.goozJson()
-POST        /login               @controllers.Authorisation.login()
-GET        /login2               @controllers.Authorisation.login2()
+GET         /                                  controllers.Application.index()
+GET         /greeter                           controllers.Application.sockHandler()
+GET         /goozJson                          controllers.Application.goozJson()
+POST        /login                             @controllers.Authorisation.login()
+GET         /login2                            @controllers.Authorisation.login2()
+GET         /fillDatabase                      @controllers.Base.fillDatabase()
+GET         /competition/*competitionId        @controllers.Base.competition(competitionId)
+
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file        controllers.Assets.at(path="/public", file)
+GET         /assets/*file                      controllers.Assets.at(path="/public", file)
