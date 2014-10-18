@@ -20,9 +20,23 @@
 		left: 50%;
 		margin-left: -150px;
 		width: 301px;
-		height: 243px;
+		height: 221px;
 		background: url("@{img}/guest-jury.png") no-repeat;
-		display: none;
+		z-index: 2;
+		// display: none;
+	}
+
+	.jury-hand-bad {
+		width: 117px;
+		height: 186px;
+		background: url("@{img}/guest-jury-hand-bad.png") no-repeat;
+		position: fixed;
+		left: 50%;
+		bottom: 87px;
+		margin-left: -79px;
+		transform-origin: 15px 91%;
+		-webkit-animation: kikbad ease-in-out 3s;
+		-webkit-animation-iteration-count: infinite;
 	}
 
 	.start-box {
@@ -112,4 +126,16 @@
 		}
 
 	}
+}
+
+@-webkit-keyframes kikbad {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
 }
