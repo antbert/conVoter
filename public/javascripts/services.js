@@ -1,14 +1,12 @@
-var convoter = angular.module('convoter');
-
 convoter
-	.factory('Jury', ['$resources', 'BASE_URLS', function (resources, baseUrls) {
+	.factory('Jury', ['$resource', 'BASE_URLS', function (resources, baseUrls) {
 		return resources(baseUrls.api + '/jury');
 	}])
 
-	.factory('Project', ['$resources', 'BASE_URLS', function (resources) {
-		return resources(baseUrls.api + '/project');
+	.factory('Competition', ['$resource', 'BASE_URLS', function (resources, baseUrls) {
+		return resources(baseUrls.api + '/competition/:id', {id: '@id'});
 	}])
 
-	.factory('Vote', ['$resources', 'BASE_URLS', function (resources) {
+	.factory('Vote', ['$resource', 'BASE_URLS', function (resources) {
 
 	}]);
