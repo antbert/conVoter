@@ -1,20 +1,16 @@
 package controllers;
 
-import controllers.core.CorsAction;
-import models.Jury;
 import play.Logger;
 import play.libs.F;
-import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.WebSocket;
-import play.mvc.With;
 import views.html.index;
 
 public class Application extends Controller {
 
     public static Result index() {
-        return ok(index.render("Your new application is ready парам памвыаавы пам."));
+        return ok(index.render());
     }
 
     public static Result index2() {
@@ -37,13 +33,5 @@ public class Application extends Controller {
                 out.write("I'm contacting you regarding your recent websocket.");
             }
         };
-    }
-
-    @With(CorsAction.class)
-    public static Result goozJson() {
-//        response().setHeader("Access-Control-Allow-Origin", "*");
-        Jury jury = new Jury("login","password");
-        jury.id = 23L;
-        return ok(Json.toJson(jury));
     }
 }

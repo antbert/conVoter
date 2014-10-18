@@ -11,7 +11,6 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.With;
-import secure.Secured;
 
 public class Authorisation extends Controller {
     private final Form<Jury> juryForm = Form.form(Jury.class);
@@ -28,19 +27,13 @@ public class Authorisation extends Controller {
         Jury jury = receivedForm.get();
         if (validateJury(jury)) {
             Logger.info("Yuri validated");
-            session("login", jury.login);
+            session(Jury.LOGIN, jury.login);
             return ok(Json.toJson(new AngularSuccess("Authorisation passed")));
         }
-        Logger.info("Yuri not validated");
-        return badRequest(Json.toJson(new AngularError("Can't find user")));
+        Logger.info("Yuri not validated ");
+        return ok(Json.toJson(new AngularError("Can't find user")));
     }
 
-    ///////
-    @Secured
-    @With(CorsAction.class)
-    public Result login2() {
-        return ok();
-    }
 
     private boolean validateJury(Jury actual) {
         try {
@@ -49,8 +42,10 @@ public class Authorisation extends Controller {
                 Logger.error("Can't get Jury from database");
                 return false;
             }
+            Logger.info("Actual password: " + actual.password + " , expected password " + expected.password);
             return actual.password.equals(expected.password);
         } catch (Throwable throwable) {
+            Logger.error(throwable.getMessage());
             return false;
         }
     }

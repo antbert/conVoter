@@ -20,7 +20,6 @@ public class Project extends Model {
 
     @Id
     @GeneratedValue
-    @Constraints.Min(1)
     public Long id;
 
     @Constraints.MaxLength(30)
@@ -33,11 +32,11 @@ public class Project extends Model {
     @JsonBackReference
     public Competition competition;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     @JsonBackReference
     public List<Rating> ratings;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     @JsonBackReference
     public List<ParticipantsRating> participantRatings;
 

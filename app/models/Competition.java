@@ -27,14 +27,15 @@ public class Competition extends Model {
     @Constraints.MaxLength(300)
     public String description;
 
-    @ManyToMany(mappedBy = "competitions", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "competitions")
+//    @JsonBackReference
     public List<Jury> vouters;
 
-    @OneToMany(mappedBy = "competition", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "competition", cascade = CascadeType.ALL)
+//    @JsonBackReference
     public List<Project> projects;
 
     public static Finder<Long, Competition> find = new Finder<Long, Competition>(
             Long.class, Competition.class
     );
-
 }
