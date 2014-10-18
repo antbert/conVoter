@@ -42,9 +42,8 @@ public class Application extends Controller {
     @With(CorsAction.class)
     public static Result goozJson() {
 //        response().setHeader("Access-Control-Allow-Origin", "*");
-        Jury jury = new Jury();
+        Jury jury = new Jury("name","login","password");
         jury.id = 23L;
-        jury.name = "fsdsfd";
         return ok(Json.toJson(jury));
     }
 }
