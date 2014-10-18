@@ -12,6 +12,13 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'UbuntuBold';
+  src: url('../fonts/ubuntu-b.eot');
+  src: url('../fonts/ubuntu-b.eot?#iefix') format('embedded-opentype'), url('../fonts/ubuntu-b.woff') format('woff'), url('../fonts/ubuntu-b.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 /*! normalize.css v1.1.3 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
@@ -485,6 +492,15 @@ input {
   border: none;
   cursor: pointer;
 }
+.bg-1 {
+  background-color: #1a9b1f;
+}
+.bg-2 {
+  background-color: #e51919;
+}
+.bg-3 {
+  background-color: #0889a5;
+}
 .page-guest {
   background: #20201f url("../images/guest-bg.jpg") no-repeat;
   background-size: cover;
@@ -580,4 +596,211 @@ input {
   visibility: visible;
   transform: translateY(-132px);
   opacity: 1;
+}
+.page-inner {
+  background: #202020 url("../images/inner-bg.png");
+}
+.page-inner .header {
+  height: 90px;
+  border-bottom: 1px solid #373737;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background: url("../images/gradient-white-top.png") no-repeat center bottom;
+}
+.page-inner .header .contest-title {
+  margin: 20px 0 0;
+  font: 43px 'UbuntuBold', sans-serif;
+}
+.page-inner .content {
+  background: url("../images/gradient-black-bottom.png") no-repeat center top;
+  margin-top: 90px;
+}
+.page-inner .content .projects {
+  text-align: center;
+  padding: 80px 0 0;
+  background: url("../images/gradient-black-top.png") no-repeat center bottom;
+}
+.page-inner .content .project {
+  width: 250px;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 40px;
+}
+.page-inner .content .project .battery-box {
+  height: 197px;
+  position: relative;
+}
+.page-inner .content .project .battery-box:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 19px;
+  background: url("../images/project-shadow-top.png") no-repeat center bottom;
+}
+.page-inner .content .project .project-points {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  background: #e16c0d;
+  color: #fff;
+  left: -15px;
+  top: -10px;
+  font: 22px 'UbuntuBold', sans-serif;
+  line-height: 40px;
+  text-align: center;
+}
+.page-inner .content .project .battery {
+  width: 54px;
+  height: 197px;
+  background: url("../images/project-battery.png") no-repeat;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
+}
+.page-inner .content .project .battery-progress {
+  width: 53px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -26px;
+}
+.page-inner .content .project .battery-progress .progress {
+  transition: all 1s ease-in-out;
+}
+.page-inner .content .project .project-info {
+  font-size: 14px;
+  min-height: 39px;
+  background: url("../images/project-shadow-bottom.png") no-repeat center top;
+}
+.page-inner .content .project .project-info .project-name {
+  color: #e16c0d;
+  font-size: 18px;
+  padding: 7px 0 3px;
+}
+.page-inner .content .project.active .battery-box:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-animation: shining ease-in-out 2s;
+  -webkit-animation-iteration-count: infinite;
+  background: url("../images/project-rays.png") no-repeat center bottom;
+}
+.page-inner .jury-list {
+  background: url("../images/gradient-white-bottom.png") no-repeat center top;
+  text-align: center;
+}
+.page-inner .jury-list .jury-list-title {
+  margin: 0;
+  padding: 25px 0;
+}
+.page-inner .jury-list .jury-member {
+  display: inline-block;
+  margin: 0 20px 20px;
+}
+.page-inner .jury-list .jury-member .photo-wrap {
+  padding: 7px;
+  border-radius: 100px;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 10px;
+}
+.page-inner .jury-list .jury-member .photo {
+  border-radius: 100px;
+}
+.page-inner .side {
+  position: fixed;
+  left: -195px;
+  top: 0;
+  width: 280px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+.page-inner .side .side-content {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  width: 240px;
+  padding: 20px;
+}
+.page-inner .side .side-title {
+  font: 26px 'UbuntuBold', sans-serif;
+  margin: 0;
+  padding: 10px 0 30px;
+}
+.page-inner .side .contests-list {
+  list-style-type: none;
+}
+.page-inner .side .contests-list li a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  height: 37px;
+  line-height: 37px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 15px;
+  margin-bottom: 3px;
+  border-radius: 100px;
+  transition: all 0.2s ease-in-out;
+}
+.page-inner .side .contests-list li a:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.page-inner .side .contests-list li.active a {
+  background: #fff;
+  color: #202020;
+}
+.page-inner .side .contests-list li.disabled {
+  opacity: .25;
+}
+.page-inner .side .contests-list li.disabled a:hover {
+  background: transparent;
+  cursor: default;
+}
+.page-inner .side .icon-menu {
+  width: 30px;
+  height: 19px;
+  background: url("../images/icon-menu.png") no-repeat;
+  position: fixed;
+  left: 28px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+.page-inner .side:hover {
+  background: #202020 url("../images/inner-bg.png");
+  z-index: 100;
+  left: 0;
+  box-shadow: 14px 0 80px #000;
+}
+.page-inner .side:hover .side-content {
+  visibility: visible;
+  opacity: 1;
+}
+.page-inner .side:hover .icon-menu {
+  left: 223px;
+  opacity: 0;
+}
+@-webkit-keyframes shining {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
 }
