@@ -3,6 +3,18 @@
 			'ngRoute'
 		]);
 
+	convoter
+		.constant('BASE_URLS', {
+			api: '/'
+		})
+		.constant('I18N.MESSAGES', {
+			'logo': 'Contest voting in realtime',
+			'contestIdInputLabel': 'Enter your contest ID',
+			'or': 'or',
+			'loginAsJury': 'Login as Jury',
+			'action.vote': 'vote'
+		});
+
 	convoter.config(['$routeProvider', '$locationProvider',
 		function (routeProvider, locationProvider) {
 			/*
@@ -16,23 +28,15 @@
 					templateUrl: 'partials/guest.html',
 					controller: 'GuestController'
 				})
+				.when('/voting', {
+					templateUrl: 'partials/inner.html',
+					controller: 'VotingMainController'
+				})
 				.otherwise({
 					templateUrl: 'partials/main.html'
 				});
 		}
 	]);
-	
-	convoter
-		.constant('colorConfig', {
-			colors: []
-		})
-		.constant('I18N.MESSAGES', {
-			'logo': 'Contest voting in realtime',
-			'contestIdInputLabel': 'Enter your contest ID',
-			'or': 'or',
-			'loginAsJury': 'Login as Jury',
-			'action.vote': 'vote'
-		});
 
 	convoter
 		.factory('localizedMessages', ['I18N.MESSAGES', function (i18nMessages) {
