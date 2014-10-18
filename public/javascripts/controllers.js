@@ -3,7 +3,12 @@
 
 	convoter.controller('GuestController', ['$scope', 
 		function (scope) {
-			var startBox = $('.start-box');
+			var startBox = $('.start-box'),
+				body = $('body');
+
+			body
+				.attr('class', '')
+				.addClass('page-guest');
 
 			scope.close = function () {
 				startBox.removeClass('login');
@@ -14,6 +19,14 @@
 			};
 		}
 	]);
+
+	convoter.controller('VotingMainController', ['$scope', function (scope) {
+		var body = $('body');
+
+		body
+			.attr('class', '')
+			.addClass('page-inner')
+	}]);
 
 	convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location', 
 		function (scope, http, location) {
@@ -40,5 +53,39 @@
 
 	convoter.controller('FindContestFormController', ['$scope', function (scope) {
 
+	}]);
+
+	convoter.controller('JuryController', ['$scope', function (scope, Jury) {
+		scope.jury = [
+			{
+				imageSrc: 'http://placehold.it/60x60',
+				name: 'Firstname Lastname'
+			},
+			{
+				imageSrc: 'http://placehold.it/60x60',
+				name: 'Firstname Lastname'
+			},
+			{
+				imageSrc: 'http://placehold.it/60x60',
+				name: 'Firstname Lastname'
+			},
+		]
+	}]);
+
+	convoter.controller('ProjectController', ['$scope', function (scope) {
+		scope.projects = [
+			{
+				name: 'project',
+				teamName: 'someteam'
+			},
+			{
+				name: 'project',
+				teamName: 'someteam'
+			},
+			{
+				name: 'project',
+				teamName: 'someteam'
+			}
+		]
 	}]);
 })();
