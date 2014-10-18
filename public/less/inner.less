@@ -81,9 +81,13 @@
     }
 
     .content {
+        display: none;
         background: url("@{img}/gradient-black-bottom.png") no-repeat center top;
         margin-top: 90px;
-
+    
+        &.active {
+            display: block;
+        }
 
         .projects {
             text-align: center;

@@ -5,7 +5,7 @@
 
 	convoter
 		.constant('BASE_URLS', {
-			api: '/assets',
+			api: 'assets/',
 			templates: ''
 		})
 		.constant('I18N.MESSAGES', {
@@ -35,10 +35,10 @@
 				})
 				.when('/voting/:eventId', {
 					templateUrl: baseUrls.templates + 'partials/inner.html',
-					controller: 'VotingMainController'
+					controller: 'GuestController'
 				})
 				.otherwise({
-					templateUrl: 'partials/main.html'
+					templateUrl: baseUrls.templates + 'partials/main.html'
 				});
 		}
 	]);

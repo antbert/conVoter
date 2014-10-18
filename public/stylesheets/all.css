@@ -701,8 +701,12 @@ input {
   background: #e16c0d;
 }
 .page-inner .content {
+  display: none;
   background: url("../images/gradient-black-bottom.png") no-repeat center top;
   margin-top: 90px;
+}
+.page-inner .content.active {
+  display: block;
 }
 .page-inner .content .projects {
   text-align: center;

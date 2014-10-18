@@ -9,9 +9,9 @@
 
 	<a href="#" class="logout" id="logout" title="Logout"></a>
 
-	<div class="screen-switcher">
-		<a href="#" class="item active">Jury vote</a>
-		<a href="#" class="item">Viewers vote</a>
+	<div class="screen-switcher" ng-controller="SwitchTabController">
+		<a href="#" class="item active el-tab-jury" ng-click="switchToJuryVote()">Jury vote</a>
+		<a href="#" class="item el-tab-viewers" ng-click="switchToViewersVote()">Viewers vote</a>
 	</div>
 </header>
 
@@ -32,7 +32,7 @@
 	</div>
 </div>
 
-<div class="content">
+<div class="content active el-tab-jury">
 
 	<div class="projects" ng-controller="ProjectController">
 		<div class="project" ng-repeat="project in projects">
@@ -71,6 +71,86 @@
 			</div>
 			<div class="name">{{member.name}}</div>
 		</div>
+	</div>
+
+</div>
+
+<div class="content content-anonymous el-tab-viewers">
+			
+	<div class="projects">
+		<div class="project">
+			<div class="battery-box">
+				<div class="battery">
+					<div class="project-points">42</div>
+				</div>
+
+				<div class="battery-progress">
+					<div class="progress" style="height: 50px"></div>
+				</div>
+
+				<div class="vote-variants">
+					<div class="variant variant-choosed">+1</div> <!-- add class .hide to animate voted points -->
+				</div>
+			</div>
+			<div class="project-info">
+				<a href="#" class="project-name">Project Name</a>
+				<div class="team-name">teamName</div>
+			</div>
+
+			<a href="#" class="btn">Vote</a>
+		</div>
+		<div class="project">
+			<div class="battery-box">
+				<div class="battery">
+					<div class="project-points">42</div>
+				</div>
+
+				<div class="battery-progress">
+					<div class="progress" style="height: 150px"></div>
+				</div>
+			</div>
+			<div class="project-info">
+				<a href="#" class="project-name">Project Name</a>
+				<div class="team-name">teamName</div>
+			</div>
+
+			<a href="#" class="btn">Vote</a>
+		</div>
+		<div class="project">
+			<div class="battery-box">
+				<div class="battery">
+					<div class="project-points">30</div>
+				</div>
+
+				<div class="battery-progress">
+					<div class="progress" style="height: 100px"></div>
+				</div>
+			</div>
+			<div class="project-info">
+				<a href="#" class="project-name">Project Name</a>
+				<div class="team-name">teamName</div>
+			</div>
+
+			<a href="#" class="btn">Vote</a>
+		</div>
+		<div class="project">
+			<div class="battery-box">
+				<div class="battery">
+					<div class="project-points">0</div>
+				</div>
+
+				<div class="battery-progress">
+					<div class="progress"></div>
+				</div>
+			</div>
+			<div class="project-info">
+				<a href="#" class="project-name">Project Name</a>
+				<div class="team-name">teamName</div>
+			</div>
+
+			<a href="#" class="btn">Vote</a>
+		</div>
+
 	</div>
 
 </div>
