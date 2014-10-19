@@ -1,6 +1,5 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
@@ -13,11 +12,16 @@ import java.util.List;
  * Created by Antoni Bertel on 17.10.2014.
  */
 @Entity
-public class Competition extends Model {
+public class RecursiveCompetition extends Model {
 
-    public Competition(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public RecursiveCompetition(Competition competition) {
+        this.name = competition.name;
+        this.description = competition.description;
+        this.id = competition.id;
+        this.startDate = competition.startDate;
+        this.endDate = competition.endDate;
+        this.vouters = competition.vouters;
+        this.projects = competition.projects;
     }
 
     @Id
@@ -37,14 +41,12 @@ public class Competition extends Model {
     public Date endDate = new Date();
 
     @ManyToMany(mappedBy = "competitions")
-    @JsonBackReference
     public List<Jury> vouters;
 
     @OneToMany(mappedBy = "competition", cascade = CascadeType.ALL)
-    @JsonBackReference
     public List<Project> projects;
 
-    public static Finder<Long, Competition> find = new Finder<Long, Competition>(
-            Long.class, Competition.class
+    public static Finder<Long, RecursiveCompetition> find = new Finder<Long, RecursiveCompetition>(
+            Long.class, RecursiveCompetition.class
     );
 }

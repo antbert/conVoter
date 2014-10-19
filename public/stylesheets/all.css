@@ -500,6 +500,16 @@ input {
   background: #fff;
   color: #e16c0d;
 }
+#loading {
+  position: fixed;
+  z-index: 999999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+}
 .bg-1 {
   background-color: #1a9b1f;
   box-shadow: 0 0 15px #1a9b1f;
@@ -511,6 +521,131 @@ input {
 .bg-3 {
   background-color: #0889a5;
   box-shadow: 0 0 15px #0889a5;
+}
+.bubblingG {
+  text-align: center;
+  width: 242px;
+  height: 125px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin: -62px 0 0 -121px;
+}
+.bubblingG span {
+  display: inline-block;
+  vertical-align: middle;
+  width: 25px;
+  height: 25px;
+  margin: 63px auto;
+  background: #000000;
+  -moz-border-radius: 125px;
+  -moz-animation: bubblingG 0.8s infinite alternate;
+  -webkit-border-radius: 125px;
+  -webkit-animation: bubblingG 0.8s infinite alternate;
+  -ms-border-radius: 125px;
+  -ms-animation: bubblingG 0.8s infinite alternate;
+  -o-border-radius: 125px;
+  -o-animation: bubblingG 0.8s infinite alternate;
+  border-radius: 125px;
+  animation: bubblingG 0.8s infinite alternate;
+}
+#bubblingG_1 {
+  -moz-animation-delay: 0s;
+  -webkit-animation-delay: 0s;
+  -ms-animation-delay: 0s;
+  -o-animation-delay: 0s;
+  animation-delay: 0s;
+}
+#bubblingG_2 {
+  -moz-animation-delay: 0.24s;
+  -webkit-animation-delay: 0.24s;
+  -ms-animation-delay: 0.24s;
+  -o-animation-delay: 0.24s;
+  animation-delay: 0.24s;
+}
+#bubblingG_3 {
+  -moz-animation-delay: 0.48s;
+  -webkit-animation-delay: 0.48s;
+  -ms-animation-delay: 0.48s;
+  -o-animation-delay: 0.48s;
+  animation-delay: 0.48s;
+}
+#bubblingG_4 {
+  -moz-animation-delay: 0.72s;
+  -webkit-animation-delay: 0.72s;
+  -ms-animation-delay: 0.72s;
+  -o-animation-delay: 0.72s;
+  animation-delay: 0.72s;
+}
+@-moz-keyframes bubblingG {
+  0% {
+    width: 25px;
+    height: 25px;
+    background-color: #000000;
+    -moz-transform: translateY(0);
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    background-color: #FFFFFF;
+    -moz-transform: translateY(-53px);
+  }
+}
+@-webkit-keyframes bubblingG {
+  0% {
+    width: 25px;
+    height: 25px;
+    background-color: #000000;
+    -webkit-transform: translateY(0);
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    background-color: #FFFFFF;
+    -webkit-transform: translateY(-53px);
+  }
+}
+@-ms-keyframes bubblingG {
+  0% {
+    width: 25px;
+    height: 25px;
+    background-color: #000000;
+    -ms-transform: translateY(0);
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    background-color: #FFFFFF;
+    -ms-transform: translateY(-53px);
+  }
+}
+@-o-keyframes bubblingG {
+  0% {
+    width: 25px;
+    height: 25px;
+    background-color: #000000;
+    -o-transform: translateY(0);
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    background-color: #FFFFFF;
+    -o-transform: translateY(-53px);
+  }
+}
+@keyframes bubblingG {
+  0% {
+    width: 25px;
+    height: 25px;
+    background-color: #000000;
+    transform: translateY(0);
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    background-color: #FFFFFF;
+    transform: translateY(-53px);
+  }
 }
 .page-guest {
   background: #20201f url("../images/guest-bg.jpg") no-repeat;
@@ -643,8 +778,12 @@ input {
   text-align: center;
   background: url("../images/gradient-white-top.png") no-repeat center bottom;
 }
+.page-inner .header .logo {
+  display: none;
+}
 .page-inner .header .contest-title {
   margin: 13px 0 0;
+  height: 46px;
   font: 38px 'UbuntuBold', sans-serif;
 }
 .page-inner .header .my-profile {
@@ -659,6 +798,7 @@ input {
   border-radius: 100px;
   width: 45px;
   height: 45px;
+  background: rgba(255, 255, 255, 0.2);
 }
 .page-inner .header .logout {
   width: 30px;
@@ -678,7 +818,8 @@ input {
   font: 16px 'UbuntuRegular', sans-serif;
   margin-bottom: -37px;
   display: inline-block;
-  left: 50%;
+  position: relative;
+  z-index: 2;
 }
 .page-inner .header .screen-switcher .item {
   width: 140px;
@@ -686,19 +827,28 @@ input {
   height: 40px;
   line-height: 40px;
   text-align: center;
-  background: #121212;
+  background-color: #121212;
   color: #fff;
   text-decoration: none;
+  border-right: 1px solid #373737;
 }
 .page-inner .header .screen-switcher .item:first-child {
   border-radius: 100px 0 0 100px;
 }
-.page-inner .header .screen-switcher .item:last-child {
-  border-radius: 0 100px 100px 0;
-}
 .page-inner .header .screen-switcher .item.active {
   cursor: default;
-  background: #e16c0d;
+  border-right: 1px solid #e16c0d;
+  background-color: #e16c0d;
+}
+.page-inner .header .screen-switcher .item:last-child {
+  border-radius: 0 100px 100px 0;
+  border: none;
+}
+.page-inner .header .screen-switcher .item-about {
+  width: 40px;
+  background-image: url("../images/icon-info.png");
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .page-inner .content {
   display: none;
@@ -709,6 +859,7 @@ input {
   display: block;
 }
 .page-inner .content .projects {
+  height: 287px;
   text-align: center;
   padding: 80px 0 0;
   background: url("../images/gradient-black-top.png") no-repeat center bottom;
@@ -892,6 +1043,15 @@ input {
   box-shadow: -3px 3px 0 rgba(0, 0, 0, 0.3);
   padding: 10px 30px;
 }
+.page-inner .content.content-about {
+  position: absolute;
+  top: 90px;
+  padding: 40px 20px 20px 120px;
+  margin: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
 .page-inner .side {
   position: fixed;
   left: -195px;
@@ -966,6 +1126,39 @@ input {
   opacity: 1;
 }
 .page-inner .side:hover .icon-menu {
+  left: 223px;
+  opacity: 0;
+}
+.page-inner .empty-state {
+  display: none;
+}
+.page-inner.page-empty .header .logo {
+  width: 166px;
+  height: 41px;
+  margin: 20px auto 0;
+  background: url("../images/logo-convoter.png") no-repeat center top;
+  display: block;
+}
+.page-inner.page-empty .content,
+.page-inner.page-empty .screen-switcher {
+  display: none;
+}
+.page-inner.page-empty .empty-state {
+  display: block;
+  margin: 120px 0 0 310px;
+  opacity: .6;
+}
+.page-inner.page-empty .side {
+  background: #202020 url("../images/inner-bg.png");
+  z-index: 100;
+  left: 0;
+  box-shadow: 14px 0 80px #000;
+}
+.page-inner.page-empty .side .side-content {
+  visibility: visible;
+  opacity: 1;
+}
+.page-inner.page-empty .side .icon-menu {
   left: 223px;
   opacity: 0;
 }
