@@ -215,7 +215,7 @@ convoter.controller('VoteController', ['$scope', 'BASE_URLS', function (scope, u
 		});
 	};
 
-	scope.anonymousVote = function (projectId) {
+	scope.anonymousVote = function (projectId, competitionId) {
 		$.ajax({
 			url: urls.api + '/addParticipantVoute',
 			method: 'POST',
@@ -226,13 +226,20 @@ convoter.controller('VoteController', ['$scope', 'BASE_URLS', function (scope, u
 				'Content-Type': 'application/x-www-form-urlencoded'
 			},
 			success: function (data) {
-				console.log(data);
+				if ('success' in data) {
+					$.cookie('vote-' + competitionId, true);
+					$('.btn-anon-vote').fadeOut(200);
+					setTimeout(function() {
+						$('.btn-anon-vote').remove();
+					}, 200);
+				}
 			}
 		});
 	};
 
-	scope.isAnonymousVoteAvailable = function (projectId) {
-		if (('vote-' + projectId) in $.cookie()) {
+	scope.isAnonymousVoteAvailable = function (competitionId) {
+		console.log($.cookie());
+		if (('vote-' + competitionId) in $.cookie()) {
 			return false;
 		}
 

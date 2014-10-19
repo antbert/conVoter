@@ -101,8 +101,8 @@
 				<div class="team-name">{{project.teamName}}</div>
 			</div>
 
-			<a ng-view="isVoteAvailable(project.id)" href="#" class="btn" ng-controller="VoteController"
-				ng-click="anonymousVote(project.id)">
+			<a ng-show="isAnonymousVoteAvailable(competition.currentCompetition.id)" href="#" class="btn btn-anon-vote" ng-controller="VoteController"
+				ng-click="anonymousVote(project.id, competition.currentCompetition.id)">
 				Vote
 			</a>
 		</div>
