@@ -39,7 +39,7 @@
 				</div>
 
 				<div class="battery-progress">
-					<div ng-repeat="rating in project.ratings" class="progress" style="background-color: {{rating.jury.color}}; box-shadow: 0 0 15px {{rating.jury.color}}; height: {{rating.mark * 30}}px;" data-points="{{rating.mark}}"></div>						
+					<div ng-repeat="rating in project.ratings" class="progress" style="background-color: {{rating.jury.color}}; box-shadow: 0 0 15px {{rating.jury.color}}; height: {{rating.mark * 183 / 3 / competition.currentCompetition.vouters.length}}px;" data-points="{{rating.mark}}"></div>						
 				</div>
 
 				
