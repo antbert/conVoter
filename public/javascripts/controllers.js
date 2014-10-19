@@ -18,21 +18,36 @@ convoter.controller('GuestController', ['$scope',
 convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS', function (scope, Competition, baseUrl) {
 	var body = $('body'),
 		locationParts = location.pathname.split(''),
-		currentCompetitionId = locationParts[locationParts.length - 1];
+		currentCompetitionId = locationParts[locationParts.length - 1],
+		$loading = $('#loading');
 
 	body.attr('class', 'page-inner');
+
+	$loading.show();
 
 	Competition.get({id: currentCompetitionId}, function(data) {
 		console.log(data);
 		scope.competition = data;
 		scope.baseUrl = baseUrl;
+		$loading.hide();
 	});
 
 }]);
 
-convoter.controller('ChooseCompetitionController', ['$scope', function (scope) {
-	var body = $('body');
+convoter.controller('ChooseCompetitionController', ['$scope', 'MyCompetitions', 'BASE_URLS', function (scope, MyCompetitions, baseUrl) {
+	var body = $('body'),
+		$loading = $('#loading');
+
 	body.attr('class', 'page-inner page-empty');
+
+	$loading.show();
+	MyCompetitions.get(function(data) {
+		console.log(data);
+		scope.competition = data;
+		scope.baseUrl = baseUrl;
+		$loading.hide();
+	});
+
 }]);	
 
 convoter.controller('VoteController', ['$scope', 'Vote', function (scope) {
@@ -43,11 +58,12 @@ convoter.controller('VoteController', ['$scope', 'Vote', function (scope) {
 
 convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location', 'BASE_URLS',
 	function (scope, http, location, baseUrl) {
-		var form = $('#jury-login-form');
+		var $loading = $('#loading');
 
 		scope.juryFormData = {};
 
 		scope.submit = function () {
+			$loading.show();
 			http({
 				method: 'POST',
 				url: baseUrl.api + '/login',
@@ -59,6 +75,11 @@ convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location'
 				if (!('error' in data)) {
 					location.path('start');
 				}
+				$loading.hide();
+			})
+			.error(function() {
+				alert('Server connection error!');
+				$loading.hide();
 			});
 		};
 	}
