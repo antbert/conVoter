@@ -230,6 +230,14 @@ convoter.controller('VoteController', ['$scope', 'BASE_URLS', function (scope, u
 			}
 		});
 	};
+
+	scope.isAnonymousVoteAvailable = function (projectId) {
+		if (('vote-' + projectId) in $.cookie()) {
+			return false;
+		}
+
+		return true;
+	}
 }]);
 
 convoter.controller('ChooseCompetitionController', ['$scope', 'MyCompetitions', 'BASE_URLS', function (scope, MyCompetitions, baseUrl) {

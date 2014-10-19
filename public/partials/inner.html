@@ -101,7 +101,7 @@
 				<div class="team-name">{{project.teamName}}</div>
 			</div>
 
-			<a href="#" class="btn" ng-controller="VoteController"
+			<a ng-view="isVoteAvailable(project.id)" href="#" class="btn" ng-controller="VoteController"
 				ng-click="anonymousVote(project.id)">
 				Vote
 			</a>
