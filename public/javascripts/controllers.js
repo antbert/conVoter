@@ -17,24 +17,109 @@ convoter.controller('GuestController', ['$scope',
 
 convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS', function (scope, Competition, baseUrl) {
 	var body = $('body'),
-		locationParts = location.pathname.split(''),
+		locationParts = location.pathname.split('/'),
 		currentCompetitionId = locationParts[locationParts.length - 1],
-		$loading = $('#loading');
+		$loading = $('#loading'),
+		ws = new WebSocket(baseUrl.ws);
 
 	body.attr('class', 'page-inner');
 
 	$loading.show();
 
+	ws.onmessage = function(event) {
+       console.log(event);
+    };
+
+    scope.$on('$destroy', function() {
+        ws.close();
+    });
+
+    window.onbeforeunload = function() {
+	    ws.close();
+	};
+
 	Competition.get({id: currentCompetitionId}, function(data) {
 		console.log(data);
-		scope.competition = data;
+		scope.competition = prepareCompetitionData(data);
 		scope.baseUrl = baseUrl;
 		$loading.hide();
 	});
 
+	var prepareCompetitionData = function(data) {
+
+		for (var i in data.currentCompetition.projects) {
+			data.currentCompetition.projects[i].showControls = showControls(data.currentCompetition.projects[i].ratings, data.userInfo.id);
+			// data.currentCompetition.vouters[i].colHeight = 
+		}
+
+		return data;
+
+	}
+
+	var showControls = function(ratings, userId) {
+		var result = true;
+		
+		for (var i in ratings) {
+			if (ratings[i].jury.id == userId) {
+				result = false;
+			}
+		}
+
+		return result;
+	}
+
 }]);
 
 convoter.controller('VoteController', ['$scope', 'BASE_URLS', function (scope, urls) {
+	scope.juryVote = function (event, projectId, points) {
+		$.ajax({
+			url: urls.api + '/addJuryVoute',
+			method: 'POST',
+			data: {
+				projectId: projectId,
+				mark: points
+			},
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			success: function (data) {
+				if ('success' in data) {
+					console.log(event);
+					var $btn = $(event.target),
+						myColor = $btn.css('background-color');
+						$voteBtns = $btn.closest('.vote-variants').find('.variant-zooming'),
+						$voteVariants = $btn.closest('.vote-variants'),
+						$batteryProgress = $btn.closest('.project').find('.battery-progress'),
+						onePointHeight = 184 / $('.jury-member').length / 3;
+					
+					console.log('myColor', myColor);
+					
+					$voteBtns.fadeOut(300);
+
+					setTimeout(function() {
+						var $vote = $btn.clone().removeClass('variant-zooming').addClass('variant-choosed').show();
+
+						$voteVariants.append($vote);
+
+						setTimeout(function() {
+							$vote.addClass('hide');
+
+							var $progress = $('<div class="progress" style="background-color: ' + myColor + '"></div>');
+
+							$batteryProgress.append($progress);
+							
+							$progress.animate({
+								height: $btn.attr('data-points') * onePointHeight
+							});
+						}, 200);
+					}, 400);
+
+					console.log(data);
+				}
+			}
+		});
+	};
+
 	scope.anonymousVote = function (projectId) {
 		$.ajax({
 			url: urls.api + '/addParticipantVoute',
@@ -50,6 +135,7 @@ convoter.controller('VoteController', ['$scope', 'BASE_URLS', function (scope, u
 			}
 		});
 	};
+}]);
 
 convoter.controller('ChooseCompetitionController', ['$scope', 'MyCompetitions', 'BASE_URLS', function (scope, MyCompetitions, baseUrl) {
 	var body = $('body'),
@@ -66,25 +152,6 @@ convoter.controller('ChooseCompetitionController', ['$scope', 'MyCompetitions', 
 	});
 
 }]);	
-
-convoter.controller('VoteController', ['$scope', 'Vote', function (scope) {
-	scope.juryVote = function (projectId, points) {
-		$.ajax({
-			url: urls.api + '/addJuryVoute',
-			method: 'POST',
-			data: {
-				projectId: projectId,
-				mark: points
-			},
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			success: function (data) {
-				console.log(data);
-			}
-		});
-	};
-}]);
 
 convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location', 'BASE_URLS',
 	function (scope, http, location, baseUrl) {

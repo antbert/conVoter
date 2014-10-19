@@ -7,7 +7,8 @@ convoter
 	.constant('BASE_URLS', {
 		api: 'http://10.168.0.50:9000',
 		templates: '/public/',
-		siteUrl: 'http://wth.loc/public'
+		siteUrl: 'http://wth.loc/public',
+		ws: 'ws://10.168.0.50:9000/ws'
 	})
 	.constant('I18N.MESSAGES', {
 		'logo': 'Contest voting in realtime',

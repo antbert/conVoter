@@ -510,18 +510,6 @@ input {
   background: rgba(0, 0, 0, 0.8);
   display: none;
 }
-.bg-1 {
-  background-color: #1a9b1f;
-  box-shadow: 0 0 15px #1a9b1f;
-}
-.bg-2 {
-  background-color: #e51919;
-  box-shadow: 0 0 15px #e51919;
-}
-.bg-3 {
-  background-color: #0889a5;
-  box-shadow: 0 0 15px #0889a5;
-}
 .bubblingG {
   text-align: center;
   width: 242px;

@@ -35,21 +35,25 @@
 		<div class="project" ng-repeat="project in competition.currentCompetition.projects">
 			<div class="battery-box">
 				<div class="battery">
-					<!-- <div class="project-points">42</div> -->
+					<div class="project-points">0</div>
 				</div>
 
 				<div class="battery-progress">
-					<div ng-repeat="member in competition.currentCompetition.vouters">
-						<div class="progress bg-{{$index + 1}}"></div>						
-					</div>
+					<div ng-repeat="rating in project.ratings" class="progress" style="background-color: {{rating.jury.color}}; height: {{rating.mark * 30}}px;"></div>						
 				</div>
 
-				<!-- <div class="variant bg-2 variant-choosed">+2</div>  --><!-- add .variant-voted to animate voted points -->
+				
+				
 				<div class="vote-variants" ng-controller="VoteController">
-					<div class="variant variant-zooming bg-1" ng-click="juryVote(project.id, 3)">+3</div>
-					<div class="variant variant-zooming bg-1" ng-click="juryVote(project.id, 2)">+2</div>
-					<div class="variant variant-zooming bg-1" ng-click="juryVote(project.id, 1)">+1</div>
-					<div class="variant variant-zooming bg-1" ng-click="juryVote(project.id, 0)">0</div>
+					<!-- <div class="variant bg-2 variant-choosed">+2</div>  -->
+
+					<!-- add .variant-voted to animate voted points -->
+					<div ng-if="project.showControls">
+						<div class="variant variant-zooming" style="background-color: {{competition.userInfo.color}}; box-shadow: 0 0 15px {{competition.userInfo.color}};" ng-click="juryVote($event, project.id, 3)" data-points="3">+3</div>
+						<div class="variant variant-zooming" style="background-color: {{competition.userInfo.color}}; box-shadow: 0 0 15px {{competition.userInfo.color}};" ng-click="juryVote($event, project.id, 2)" data-points="2">+2</div>
+						<div class="variant variant-zooming" style="background-color: {{competition.userInfo.color}}; box-shadow: 0 0 15px {{competition.userInfo.color}};" ng-click="juryVote($event, project.id, 1)" data-points="1">+1</div>
+						<div class="variant variant-zooming" style="background-color: {{competition.userInfo.color}}; box-shadow: 0 0 15px {{competition.userInfo.color}};" ng-click="juryVote($event, project.id, 0)" data-points="0">0</div>
+					</div>
 				</div>
 
 			</div>
@@ -63,7 +67,7 @@
 	<div ng-controller="JuryController" class="jury-list">
 		<h3 class="jury-list-title">Jury</h3>
 		<div class="jury-member" ng-repeat="member in competition.currentCompetition.vouters">
-			<div class="photo-wrap bg-{{$index + 1}}">
+			<div class="photo-wrap" style="background-color: {{member.color}}; box-shadow: 0 0 15px {{member.color}};" >
 				<img ng-src="{{member.imageLink}}" class="photo" alt="">
 			</div>
 			<div class="name">{{member.name}}</div>
