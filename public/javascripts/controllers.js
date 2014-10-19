@@ -31,7 +31,7 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
        console.log(wsData);
 
        // jury voting
-       if (wsData.mark) {
+       if (wsData.juryId) {
 	       setTimeout(function() {
 	       		var $project = $('.projects-jury .project[data-id=' + wsData.projectId + ']'),
 	       			onePointHeight = 184 / $('.jury-member').length / 3;
@@ -68,24 +68,25 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 			setTimeout(function() {
 				$vote.addClass('hide');
 
-				var $progress = $('<div class="progress" style="background-color: ' + wsData.color + '; box-shadow: 0 0 15px '+ wsData.color +'" data-points="' + wsData.mark + '"></div>');
-
-				$batteryProgress.append($progress);
-				
-				$progress.animate({
-					height: wsData.mark * onePointHeight
-				});
-
-				updateTotalProjectPoints(wsData.projectId, false);
+				updateTotalProjectPoints(wsData.projectId, true);
 			}, 200);
 	    }
     };
 
     var updateTotalProjectPoints = function(projectId, isAnon) {
     	var result = 0;
-
+    	console.log(isAnon);
     	if (isAnon) {
 
+    		var $project = $('.projects-anonymous .project[data-id=' + projectId + ']');
+    		// console.log($project);
+    		// $project.find('.battery-progress .progress').each(function() {
+    		// 	result += parseInt($(this).attr('data-points'));
+    		// });
+
+    		$project.find('.project-points').html(parseInt($project.find('.project-points').text()) + 1);
+
+    		calcAnonHeight();
 
 
     	} else {
@@ -102,6 +103,31 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 
     }
 
+    var calcAnonHeight = function() {
+    	var $projects = $('.projects-anonymous .project'),
+    		projIDs = [];
+
+    	console.log($projects);
+
+    	$projects.each(function() {
+    		projIDs.push(parseInt($(this).find('.project-points').text()));
+    	});
+
+    	var maxVal = Math.max.apply(Math, projIDs),
+    		onePercent = maxVal / 100,
+    		onePercentPixel = 183 / 100;
+
+    	$projects.each(function() {
+    		var projPoints = parseInt($(this).find('.project-points').text());
+
+    		console.log(projPoints, '/', maxVal, '*', onePercentPixel)
+
+    		$(this).find('.progress').animate({
+    			height: projPoints / maxVal * 100 * onePercentPixel
+    		});
+    	});
+    }
+
     scope.$on('$destroy', function() {
         ws.close();
     });
@@ -114,7 +140,11 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 		console.log(data);
 		scope.competition = prepareCompetitionData(data);
 		scope.baseUrl = baseUrl;
-		$loading.hide();		
+		$loading.hide();	
+		
+		setTimeout(function() {
+			calcAnonHeight();	
+		}, 300)
 	});
 
 	var prepareCompetitionData = function(data) {
@@ -173,9 +203,7 @@ convoter.controller('VoteController', ['$scope', 'BASE_URLS', function (scope, u
 					console.log(event);
 					var $btn = $(event.target),
 						myColor = $btn.css('background-color');
-						$voteBtns = $btn.closest('.vote-variants').find('.variant-zooming'),
-						$voteVariants = $btn.closest('.vote-variants'),
-						$batteryProgress = $btn.closest('.project').find('.battery-progress');
+						$voteBtns = $btn.closest('.vote-variants').find('.variant-zooming');
 					
 					console.log('myColor', myColor);
 					

@@ -79,7 +79,7 @@
 <div class="content content-anonymous el-tab el-tab-viewers">
 			
 	<div class="projects projects-anonymous" ng-controller="ProjectController">
-		<div class="project" ng-repeat="project in competition.currentCompetition.projects">
+		<div class="project" ng-repeat="project in competition.currentCompetition.projects" data-id="{{project.id}}">
 			<div class="battery-box">
 				<div class="battery">
 					<div class="project-points">{{project.participantsCount}}</div>

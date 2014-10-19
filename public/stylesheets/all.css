@@ -962,6 +962,7 @@ input {
   transition: all 1.5s ease-in-out;
   margin-top: 130px;
   margin-left: -52px;
+  position: absolute;
 }
 .page-inner .content .project .vote-variants .variant.hide {
   transform: translateY(-100px) scale(2);
@@ -1018,6 +1019,7 @@ input {
 }
 .page-inner .content.content-anonymous .project .progress {
   background: #e16c0d;
+  max-height: 184px;
 }
 .page-inner .content.content-anonymous .project .vote-variants .variant {
   color: #e16c0d;
