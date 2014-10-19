@@ -42,11 +42,11 @@
 				</div>
 
 				<!-- <div class="variant bg-2 variant-choosed">+2</div>  --><!-- add .variant-voted to animate voted points -->
-				<div class="vote-variants">
-					<div class="variant variant-zooming bg-1">+3</div>
-					<div class="variant variant-zooming bg-1">+2</div>
-					<div class="variant variant-zooming bg-1">+1</div>
-					<div class="variant variant-zooming bg-1">0</div>
+				<div class="vote-variants" ng-controller="VoteController">
+					<div class="variant variant-zooming bg-1" ng-click="juryVote(project.id, 3)">+3</div>
+					<div class="variant variant-zooming bg-1" ng-click="juryVote(project.id, 2)">+2</div>
+					<div class="variant variant-zooming bg-1" ng-click="juryVote(project.id, 1)">+1</div>
+					<div class="variant variant-zooming bg-1" ng-click="juryVote(project.id, 0)">0</div>
 				</div>
 
 			</div>
@@ -94,7 +94,10 @@
 				<div class="team-name">{{project.teamName}}</div>
 			</div>
 
-			<a href="#" class="btn">Vote</a>
+			<a href="#" class="btn" ng-controller="VoteController"
+				ng-click="anonymousVote(project.id)">
+				Vote
+			</a>
 		</div>
 	</div>
 

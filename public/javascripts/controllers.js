@@ -28,10 +28,39 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 
 }]);
 
-convoter.controller('VoteController', ['$scope', 'Vote', function (scope) {
-	scope.vote = function () {
+convoter.controller('VoteController', ['$scope', 'BASE_URLS', function (scope, urls) {
+	scope.anonymousVote = function (projectId) {
+		$.ajax({
+			url: urls.api + '/addParticipantVoute',
+			method: 'POST',
+			data: {
+				projectId: projectId
+			},
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			success: function (data) {
+				console.log(data);
+			}
+		});
+	};
 
-	}
+	scope.juryVote = function (projectId, points) {
+		$.ajax({
+			url: urls.api + '/addJuryVoute',
+			method: 'POST',
+			data: {
+				projectId: projectId,
+				mark: points
+			},
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			success: function (data) {
+				console.log(data);
+			}
+		});
+	};
 }]);
 
 convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location', 'BASE_URLS',
@@ -74,7 +103,7 @@ convoter.controller('JuryController', ['$scope', function (scope, Jury) {
 		{
 			imageSrc: 'http://placehold.it/60x60',
 			name: 'Firstname Lastname'
-		},
+		}
 	]
 }]);
 
@@ -86,7 +115,7 @@ convoter.controller('ProjectController', ['$scope', function (scope) {
 		},
 		{
 			name: 'project',
-			teamName: 'someteam'
+			teamName: 'soprojectIdmeteam'
 		},
 		{
 			name: 'project',
