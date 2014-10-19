@@ -2,7 +2,7 @@
 
 	<div class="logo"></div>
 
-	<div class="my-profile">
+	<div class="my-profile" ng-show="isJury">
 		<img src="{{competition.userInfo.imageLink}}" class="photo" alt="">
 		{{competition.userInfo.name}}
 	</div>
@@ -18,7 +18,7 @@
 	</div>
 </header>
 
-<div class="side">
+<div class="side" ng-show="isJury">
 	<div class="icon-menu"></div>
 	
 	<div class="side-content">

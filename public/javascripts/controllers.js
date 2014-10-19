@@ -141,6 +141,8 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 		scope.competition = prepareCompetitionData(data);
 		scope.baseUrl = baseUrl;
 		$loading.hide();	
+
+		scope.isJury = scope.competition.userInfo ? true : false;
 		
 		setTimeout(function() {
 			calcAnonHeight();	
@@ -148,9 +150,9 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 	});
 
 	var prepareCompetitionData = function(data) {
-
+		console.log(data);
 		for (var i in data.currentCompetition.projects) {
-			data.currentCompetition.projects[i].showControls = showControls(data.currentCompetition.projects[i].ratings, data.userInfo.id);
+			data.currentCompetition.projects[i].showControls = showControls(data.currentCompetition.projects[i].ratings, ((data && data.userInfo) ? data.userInfo.id : null));
 			data.currentCompetition.projects[i].totalJury = updateTotalProjectPointsFromData(data.currentCompetition.projects[i]);
 			// data.currentCompetition.vouters[i].colHeight = 
 		}
@@ -161,6 +163,8 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 
 	var showControls = function(ratings, userId) {
 		var result = true;
+
+		if (!userId) return false;
 		
 		for (var i in ratings) {
 			if (ratings[i].jury.id == userId) {
