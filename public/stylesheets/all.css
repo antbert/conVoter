@@ -961,6 +961,7 @@ input {
 .page-inner .content .project .vote-variants .variant.variant-choosed {
   transition: all 1.5s ease-in-out;
   margin-top: 130px;
+  margin-left: -52px;
 }
 .page-inner .content .project .vote-variants .variant.hide {
   transform: translateY(-100px) scale(2);

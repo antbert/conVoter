@@ -27,8 +27,80 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 	$loading.show();
 
 	ws.onmessage = function(event) {
-       console.log(event);
+       var wsData = JSON.parse(event.data);
+       console.log(wsData);
+
+       // jury voting
+       if (wsData.mark) {
+	       setTimeout(function() {
+	       		var $project = $('.projects-jury .project[data-id=' + wsData.projectId + ']'),
+	       			onePointHeight = 184 / $('.jury-member').length / 3;
+	       			$voteVariants = $project.find('.vote-variants'),
+	       			$batteryProgress = $project.find('.battery-progress'),
+	       			$vote = $('<div class="variant variant-choosed" style="background-color: ' + wsData.color + ';">' + ((wsData.mark > 0) ? '+' + wsData.mark : '0') + '</div>');
+
+				$voteVariants.append($vote);
+
+				setTimeout(function() {
+					$vote.addClass('hide');
+
+					var $progress = $('<div class="progress" style="background-color: ' + wsData.color + '; box-shadow: 0 0 15px '+ wsData.color +'" data-points="' + wsData.mark + '"></div>');
+
+					$batteryProgress.append($progress);
+					
+					$progress.animate({
+						height: wsData.mark * onePointHeight
+					});
+
+					updateTotalProjectPoints(wsData.projectId, false);
+				}, 200);
+			}, 400);
+	    } else {
+	    // anonymous voting
+	    	var $project = $('.projects-anonymous .project[data-id=' + wsData.projectId + ']'),
+       			onePointHeight = 184 / $('.jury-member').length / 3;
+       			$voteVariants = $project.find('.vote-variants'),
+       			$batteryProgress = $project.find('.battery-progress'),
+       			$vote = $('<div class="variant variant-choosed" style="background-color: ' + wsData.color + ';">' + ((wsData.mark > 0) ? '+' + wsData.mark : '0') + '</div>');
+
+			$voteVariants.append($vote);
+
+			setTimeout(function() {
+				$vote.addClass('hide');
+
+				var $progress = $('<div class="progress" style="background-color: ' + wsData.color + '; box-shadow: 0 0 15px '+ wsData.color +'" data-points="' + wsData.mark + '"></div>');
+
+				$batteryProgress.append($progress);
+				
+				$progress.animate({
+					height: wsData.mark * onePointHeight
+				});
+
+				updateTotalProjectPoints(wsData.projectId, false);
+			}, 200);
+	    }
     };
+
+    var updateTotalProjectPoints = function(projectId, isAnon) {
+    	var result = 0;
+
+    	if (isAnon) {
+
+
+
+    	} else {
+
+    		var $project = $('.projects-jury .project[data-id=' + projectId + ']');
+    		console.log($project);
+    		$project.find('.battery-progress .progress').each(function() {
+    			result += parseInt($(this).attr('data-points'));
+    		});
+
+    		$project.find('.project-points').text(result);
+
+    	}
+
+    }
 
     scope.$on('$destroy', function() {
         ws.close();
@@ -42,13 +114,14 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 		console.log(data);
 		scope.competition = prepareCompetitionData(data);
 		scope.baseUrl = baseUrl;
-		$loading.hide();
+		$loading.hide();		
 	});
 
 	var prepareCompetitionData = function(data) {
 
 		for (var i in data.currentCompetition.projects) {
 			data.currentCompetition.projects[i].showControls = showControls(data.currentCompetition.projects[i].ratings, data.userInfo.id);
+			data.currentCompetition.projects[i].totalJury = updateTotalProjectPointsFromData(data.currentCompetition.projects[i]);
 			// data.currentCompetition.vouters[i].colHeight = 
 		}
 
@@ -66,6 +139,19 @@ convoter.controller('VotingMainController', ['$scope', 'Competition', 'BASE_URLS
 		}
 
 		return result;
+	}
+
+	var updateTotalProjectPointsFromData = function(project) {
+		var result = 0;
+
+		for (var i in project.ratings) {
+			if (project.ratings[i].mark) {
+				result += project.ratings[i].mark;
+			}
+		}
+
+		return result;
+
 	}
 
 }]);
@@ -89,30 +175,11 @@ convoter.controller('VoteController', ['$scope', 'BASE_URLS', function (scope, u
 						myColor = $btn.css('background-color');
 						$voteBtns = $btn.closest('.vote-variants').find('.variant-zooming'),
 						$voteVariants = $btn.closest('.vote-variants'),
-						$batteryProgress = $btn.closest('.project').find('.battery-progress'),
-						onePointHeight = 184 / $('.jury-member').length / 3;
+						$batteryProgress = $btn.closest('.project').find('.battery-progress');
 					
 					console.log('myColor', myColor);
 					
 					$voteBtns.fadeOut(300);
-
-					setTimeout(function() {
-						var $vote = $btn.clone().removeClass('variant-zooming').addClass('variant-choosed').show();
-
-						$voteVariants.append($vote);
-
-						setTimeout(function() {
-							$vote.addClass('hide');
-
-							var $progress = $('<div class="progress" style="background-color: ' + myColor + '"></div>');
-
-							$batteryProgress.append($progress);
-							
-							$progress.animate({
-								height: $btn.attr('data-points') * onePointHeight
-							});
-						}, 200);
-					}, 400);
 
 					console.log(data);
 				}

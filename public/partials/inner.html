@@ -31,15 +31,15 @@
 </div>
 
 <div class="content active el-tab el-tab-jury">	
-	<div class="projects" ng-controller="ProjectController">
-		<div class="project" ng-repeat="project in competition.currentCompetition.projects">
+	<div class="projects projects-jury" ng-controller="ProjectController">
+		<div class="project" ng-repeat="project in competition.currentCompetition.projects" data-id="{{project.id}}">
 			<div class="battery-box">
 				<div class="battery">
-					<div class="project-points">0</div>
+					<div class="project-points">{{project.totalJury}}</div>
 				</div>
 
 				<div class="battery-progress">
-					<div ng-repeat="rating in project.ratings" class="progress" style="background-color: {{rating.jury.color}}; height: {{rating.mark * 30}}px;"></div>						
+					<div ng-repeat="rating in project.ratings" class="progress" style="background-color: {{rating.jury.color}}; box-shadow: 0 0 15px {{rating.jury.color}}; height: {{rating.mark * 30}}px;" data-points="{{rating.mark}}"></div>						
 				</div>
 
 				
@@ -78,15 +78,15 @@
 
 <div class="content content-anonymous el-tab el-tab-viewers">
 			
-	<div class="projects" ng-controller="ProjectController">
+	<div class="projects projects-anonymous" ng-controller="ProjectController">
 		<div class="project" ng-repeat="project in competition.currentCompetition.projects">
 			<div class="battery-box">
 				<div class="battery">
-					<!-- <div class="project-points">42</div> -->
+					<div class="project-points">{{project.participantsCount}}</div>
 				</div>
 
 				<div class="battery-progress">
-					<div class="progress" style="height: 50px"></div>
+					<div class="progress" style="height: {{project.participantsCount * 30}}px;"></div>
 				</div>
 				
 				<div class="vote-variants">
