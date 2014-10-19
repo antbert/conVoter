@@ -5,7 +5,7 @@
     <div class="start-first">
         <form id="find-contest-form" ng-controller="FindContestFormController" ng-submit="find()" novalidate>
             <label for="contest-id">Enter your contest ID</label>
-            <input type="text" name="id" id="contest-id" class="inp" autofocus ng-model="formData.id" required>
+            <input type="text" name="id" id="contest-id" class="inp" autofocus ng-model="formData.id">
         </form>
 
         <div class="or">or</div>
@@ -17,13 +17,14 @@
         class="start-second" id="jury-login-form" ng-submit="submit()">
         <div class="close" ng-click="close()">&times;</div>
         <input type="text" name="login" id="jury-username" 
-            class="inp" placeholder="Username" ng-model="juryFormData.login">
+            class="inp" placeholder="Username" ng-model="juryFormData.login" required>
         <input type="password" name="password" id="jury-password" 
             class="inp" placeholder="Password" ng-model="juryFormData.password" required>
         <input type="submit" class="btn" value="Login">
     </form>
 
+    <div id="error-output" style="display: none; color: red">Authorization failed</div.
 </div>
 
-<div class="jury"></div>
-<div class="jury-hand-bad"></div>
+<!-- <div class="jury"></div> -->
+<!-- <div class="jury-hand-bad"></div> -->

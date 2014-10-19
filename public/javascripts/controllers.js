@@ -156,10 +156,12 @@ convoter.controller('ChooseCompetitionController', ['$scope', 'MyCompetitions', 
 convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location', 'BASE_URLS',
 	function (scope, http, location, baseUrl) {
 		var $loading = $('#loading');
+		var errorOutput = $('#error-output');
 
 		scope.juryFormData = {};
 
 		scope.submit = function () {
+			errorOutput.hide();			
 			$loading.show();
 			http({
 				method: 'POST',
@@ -171,6 +173,9 @@ convoter.controller('LoginAsJuryFormController', ['$scope', '$http', '$location'
 			}).success(function (data, asdgf, header) {
 				if (!('error' in data)) {
 					location.path('start');
+				} else {
+					$('form[name=loginForm] input[name=password]').val('');
+					errorOutput.show();
 				}
 				$loading.hide();
 			})
