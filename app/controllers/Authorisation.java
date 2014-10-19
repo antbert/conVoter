@@ -26,6 +26,7 @@ public class Authorisation extends Controller {
         Logger.info("Form has not errors");
         Jury jury = receivedForm.get();
         if (validateJury(jury)) {
+//            Jury expected = Ebean.find(Jury.class).where().eq("login", jury.login).findUnique();
             Logger.info("Yuri validated");
             session(Jury.LOGIN, jury.login);
             return ok(Json.toJson(new AngularSuccess("Authorisation passed")));

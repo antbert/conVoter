@@ -3,15 +3,16 @@
 # ~~~~
 
 # Home page
-GET         /                                  controllers.Application.index()
-GET         /login                             controllers.Application.index()
-GET         /voting                            controllers.Application.index()
-GET         /greeter                           controllers.Application.sockHandler()
+GET         /                                  controllers.Websocket.index()
+GET         /login                             controllers.Websocket.index()
+GET         /voting                            controllers.Websocket.index()
+GET         /ws                                controllers.Websocket.sockHandler()
 POST        /login                             @controllers.Authorisation.login()
 GET         /fillDatabase                      @controllers.Base.fillDatabase()
-GET         /competition/*competitionId        @controllers.RestGet.competition(competitionId)
-GET         /addJuryVoute                      @controllers.RestGet.addJuryVoute()
-GET         /addParticipantVoute               @controllers.RestGet.addParticipantVoute()
+GET         /competition/*competitionId        @controllers.Handler.competition(competitionId)
+POST        /addJuryVoute                      @controllers.Handler.addJuryVoute()
+POST        /addParticipantVoute               @controllers.Handler.addParticipantVoute()
+GET         /getUserCompetitions               @controllers.Handler.getUserCompetitions()
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                      controllers.Assets.at(path="/public", file)

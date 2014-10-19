@@ -39,6 +39,8 @@ public class Jury extends Model {
 
     public String imageLink;
 
+    public  String color;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonBackReference
     public List<Competition> competitions;

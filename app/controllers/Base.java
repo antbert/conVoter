@@ -18,9 +18,11 @@ public class Base extends Controller {
         Jury firstJury = new Jury("login", "password");
         firstJury.name = "Дмитрий Дудин";
         firstJury.imageLink = "http://wth.by/images/dudes/dudin.png";
+        firstJury.color = "#1a9b1f";
         Jury secondJury = new Jury("login2", "password2");
         secondJury.name = "Анастасия Хоменкова";
         secondJury.imageLink = "http://wth.by/images/dudes/nastia.png";
+        secondJury.color = "#e51919";
 
         Competition firstCompetition = new Competition("What the hack", "Within 44 hours the participants will have to create a prototype\n" +
                 "and / or a demo that will impress the jury and the audience");
